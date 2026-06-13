@@ -1,0 +1,51 @@
+name: Papaya Global FinOps
+description: Financial operations guidance for managing costs, optimizing spend, and forecasting expenses when using the Papaya Global global payroll and workforce management platform.
+url: https://www.papayaglobal.com/pricing/
+costDrivers:
+  - name: Employee Count
+    description: Most pricing tiers are billed per employee or contractor per month, making headcount the primary cost driver.
+    impact: high
+    notes: Monitor active employee counts monthly; offboard promptly to avoid billing for inactive workers.
+  - name: Transaction Volume
+    description: Payments tier is billed per transaction at $2.50/transaction for cross-border payments.
+    impact: medium
+    notes: Batch payments where possible to reduce per-transaction costs. Consolidate payment runs.
+  - name: Countries Covered
+    description: Setup fees of $1,000-$15,000+ per country and EOR costs vary by country complexity.
+    impact: high
+    notes: Prioritize high-headcount countries first. Evaluate cost-benefit of adding new country entities.
+  - name: EOR vs Owned Entity
+    description: Employer of Record ($599-750/employee/month) is significantly more expensive than Payroll Plus ($25/employee/month) for owned entities.
+    impact: high
+    notes: Where volume justifies it, establishing owned local entities reduces per-employee costs significantly.
+  - name: FX Rates
+    description: Currency conversion adds an estimated 1-1.5% above mid-market rates.
+    impact: medium
+    notes: Monitor FX spread impact on high-volume payment corridors. Consider timing of large payments.
+  - name: EOR Deposit
+    description: Security deposits of approximately 2 months gross salary per EOR employee tie up working capital.
+    impact: medium
+    notes: Factor EOR deposits into cash flow planning when scaling headcount in new countries.
+optimization:
+  - name: Tier Right-Sizing
+    description: Match product tier to actual use case. Use Workforce OS for visibility only; upgrade to Payroll Plus only for active payroll processing.
+    action: Audit active product tiers quarterly against actual usage.
+  - name: Payment Batching
+    description: Consolidate cross-border payments into fewer, larger runs to minimize per-transaction fees.
+    action: Schedule payment runs on a weekly or bi-weekly cadence rather than ad-hoc.
+  - name: Entity Strategy
+    description: For countries with 5+ employees on EOR, evaluate establishing a local legal entity to shift from EOR rates to Payroll Plus rates.
+    action: Model break-even point for local entity formation vs. ongoing EOR costs.
+  - name: API Usage Monitoring
+    description: Use API-driven workforce data to maintain accurate headcount and avoid billing for terminated workers.
+    action: Automate worker termination workflows via API to ensure prompt offboarding.
+  - name: Annual Commitment Negotiation
+    description: Enterprise minimums start at $100K+ annually. Negotiate volume discounts and SLAs for multi-year commitments.
+    action: Benchmark pricing annually and leverage competitive bids during renewal negotiations.
+forecasting:
+  - name: Monthly Payroll Cost Formula
+    description: "Estimated monthly cost = (Payroll Plus employees x $25) + (EOR employees x $625 avg) + (contractors x $30) + (payment transactions x $2.50) + FX spread"
+    notes: Add setup fees as one-time costs when entering new countries.
+  - name: Scaling Model
+    description: Model headcount growth by country to project when EOR costs warrant local entity formation.
+    notes: Setup costs for local entities typically range $10,000-$50,000 depending on country; ROI typically achieved at 8-15 EOR employees.

@@ -1,0 +1,32 @@
+name: Papaya Global API Rate Limits
+description: Rate limiting information for the Papaya Global Workforce Payments API. Specific rate limit values are not publicly documented; contact Papaya Global integration support for production limits.
+url: https://docs.papayaglobal.com/
+limits:
+  - name: API Rate Limits
+    description: Specific rate limits are not publicly disclosed in Papaya Global API documentation. Contact integration support for production environment rate limit details.
+    limit: not-disclosed
+    period: not-disclosed
+    notes: Rate limits are enforced but not published. Reach out to integration@papayaglobal.com for details.
+  - name: Token Validity
+    description: Each access token is valid for 24 hours and can be reused across multiple API calls within that period.
+    limit: 1
+    period: 24 hours
+    notes: Request a new token after expiration using api_key and client_secret credentials.
+  - name: Pagination
+    description: List endpoints use offset-based pagination with page and limit query parameters.
+    limit: varies
+    period: per request
+    notes: Use 'page' and 'limit' parameters on list endpoints such as GET /workers and GET /payments.
+environments:
+  - name: Staging
+    baseUrl: https://authentication-service.staging.pay.papayaglobal.work/token
+    notes: Separate API keys and client secrets from production.
+  - name: Production
+    baseUrl: https://api.papayaglobal.com/api/v1
+    notes: Separate API keys and client secrets from staging.
+authentication:
+  type: Bearer Token (JWT)
+  method: POST to /token with api_key and client_secret in header
+  tokenTtl: 24 hours
+  headerFormat: "Authorization: Bearer [token]"
+  protocol: HTTPS only

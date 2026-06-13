@@ -1,0 +1,60 @@
+aid: papaya-global
+name: Papaya Global
+description: Global payroll and workforce management platform with a REST API for managing international payroll, contractor payments, worker records, and compliance across 160+ countries.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/papaya-global/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Payroll
+  - Global Workforce
+  - HR
+  - Payments
+  - Employer of Record
+  - Contractor Management
+  - Compliance
+apis:
+  - aid: papaya-global:workforce-payments-api
+    name: Papaya Global Workforce Payments API
+    description: REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across international markets.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.papayaglobal.com/
+    baseURL: https://api.papayaglobal.com/api/v1
+    tags:
+      - Payroll
+      - Payments
+      - Workforce
+      - Beneficiaries
+      - Wallets
+    properties:
+      - type: Documentation
+        url: https://docs.papayaglobal.com/
+      - type: Authentication
+        url: https://docs.papayaglobal.com/api-reference/authentication-api
+common:
+  - type: Website
+    url: https://www.papayaglobal.com/
+  - type: Documentation
+    url: https://docs.papayaglobal.com/
+  - type: GitHubOrg
+    url: https://github.com/papayaglobal
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/papaya-global
+  - type: Blog
+    url: https://www.papayaglobal.com/blog/
+  - type: Pricing
+    url: https://www.papayaglobal.com/pricing/
+  - type: StatusPage
+    url: https://www.saashub.com/papaya-global-status
+  - type: X
+    url: https://twitter.com/Papaya_Global
+  - type: Plans
+    url: plans/papaya-global-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/papaya-global-rate-limits.yml
+  - type: FinOps
+    url: finops/papaya-global-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

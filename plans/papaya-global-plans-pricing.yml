@@ -1,0 +1,85 @@
+name: Papaya Global Plans and Pricing
+description: Pricing tiers for Papaya Global global payroll, workforce management, and international payments platform.
+url: https://www.papayaglobal.com/pricing/
+plans:
+  - name: Workforce OS
+    description: Analytics and visibility layer for global workforce management without payroll execution.
+    price: 5.00
+    unit: per employee per month
+    currency: USD
+    features:
+      - Global workforce analytics
+      - Visibility and reporting dashboard
+      - HRIS integration
+      - Workforce data consolidation
+  - name: Payroll Plus
+    description: Full payroll processing for owned entities with HRIS integration.
+    price: 25.00
+    unit: per employee per month
+    currency: USD
+    features:
+      - Full payroll processing
+      - Owned entity payroll
+      - HRIS integration
+      - Compliance management
+      - API access
+  - name: Contingent OS
+    description: Contractor management, classification, and payments for global contingent workforce.
+    price: 30.00
+    unit: per contractor per month
+    currency: USD
+    features:
+      - Contractor management
+      - Worker classification
+      - Cross-border contractor payments
+      - Compliance tools
+      - API access
+  - name: Payments
+    description: Cross-border salary and vendor payments via global banking partners.
+    price: 2.50
+    unit: per transaction
+    currency: USD
+    features:
+      - Cross-border payments
+      - Multi-currency support
+      - Global banking network
+      - Payment tracking
+      - API access
+  - name: Employer of Record (EOR)
+    description: Employment through Papaya partner entities across 160+ countries.
+    price: 599.00
+    unit: per employee per month
+    currency: USD
+    priceHigh: 750.00
+    features:
+      - Employment in 160+ countries
+      - Full HR and payroll outsourcing
+      - Local compliance management
+      - Benefits administration
+      - Onboarding support
+      - API access
+  - name: Managed Payroll
+    description: Fully outsourced payroll operations for enterprises with custom pricing.
+    price: 0.00
+    unit: custom enterprise pricing
+    currency: USD
+    features:
+      - Fully outsourced payroll
+      - Dedicated account management
+      - Custom integrations
+      - Advanced compliance support
+      - SLA guarantees
+      - API access
+additionalCosts:
+  - name: Setup Fees
+    description: Per-country onboarding setup fees.
+    priceRange: "$1,000 - $15,000+ per country"
+  - name: EOR Deposit
+    description: Security deposit required per EOR employee.
+    priceRange: "Approximately 2 months gross salary per employee"
+  - name: FX Processing
+    description: Foreign exchange processing above mid-market rates.
+    priceRange: "Estimated 1-1.5% above mid-market rates"
+  - name: Enterprise Minimum
+    description: Minimum annual commitment for enterprise contracts.
+    priceRange: "$100,000+ annual commitment"
