@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/papaya-global/main/json-schema/wallet.json",
+  "title": "Wallet",
+  "description": "An organizational wallet in the Papaya Global Workforce Payments API. Wallets belong to the organization and store balances in configured currencies.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique wallet identifier"
+    },
+    "type": {
+      "type": "string",
+      "description": "Wallet type"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code for the wallet balance"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable wallet name"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Organization identifier that owns this wallet"
+    },
+    "funding": {
+      "type": "object",
+      "description": "Banking details for funding this wallet",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Bank or account name"
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-2 country code for the bank"
+        },
+        "account_number": {
+          "type": "string",
+          "description": "Bank account number"
+        },
+        "bic": {
+          "type": "string",
+          "description": "Bank Identifier Code (SWIFT/BIC)"
+        },
+        "iban": {
+          "type": "string",
+          "description": "International Bank Account Number"
+        }
+      }
+    },
+    "balance": {
+      "type": "number",
+      "description": "Current wallet balance in the wallet's currency"
+    },
+    "user_tags": {
+      "type": "object",
+      "description": "Custom key-value tags",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "state": {
+      "type": "string",
+      "description": "Current wallet state (e.g., active, inactive)"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/papaya-global/main/json-schema/beneficiary.json",
+  "title": "Beneficiary",
+  "description": "A payment beneficiary in the Papaya Global Workforce Payments API. Represents an individual or organization that receives payments.",
+  "type": "object",
+  "required": ["entity_type", "country", "currency", "entity", "bank_details"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique beneficiary identifier"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": ["individual", "company"],
+      "description": "Whether the beneficiary is an individual or a company"
+    },
+    "country": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-2 two-letter country code"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 three-letter currency code"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the beneficiary is currently active"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the beneficiary"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the beneficiary record"
+    },
+    "entity": {
+      "type": "object",
+      "description": "Entity-specific information (structure varies by entity_type and country)",
+      "additionalProperties": true
+    },
+    "bank_details": {
+      "type": "object",
+      "description": "Banking information (structure varies by country and currency — use /payments/beneficiaries/schema/{entity_type}/{country}/{currency} to get the correct schema)",
+      "additionalProperties": true
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "System tags for categorization"
+    },
+    "user_tags": {
+      "type": "object",
+      "description": "Custom key-value tags set by the user",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "payments": {
+      "type": "array",
+      "description": "Associated payment records",
+      "items": {
+        "type": "object"
+      }
+    },
+    "issues": {
+      "type": "array",
+      "description": "Any issues with the beneficiary record",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

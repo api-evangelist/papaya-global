@@ -32,6 +32,8 @@ apis:
         url: https://docs.papayaglobal.com/
       - type: Authentication
         url: https://docs.papayaglobal.com/api-reference/authentication-api
+      - type: OpenAPI
+        url: openapi/papaya-global-workforce-payments-api.yml
 common:
   - type: Website
     url: https://www.papayaglobal.com/

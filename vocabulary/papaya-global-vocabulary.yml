@@ -1,0 +1,146 @@
+vocabulary:
+  - term: Wallet
+    definition: >
+      An organizational account that stores balances in a configured currency (USD, GBP, EUR, etc.)
+      and is used to fund payment instructions. Wallets belong to the organization, not to individual
+      beneficiaries. Each wallet has a unique ID, currency, balance, and funding bank details.
+    related:
+      - WalletStatement
+      - PaymentGroup
+      - PaymentInstruction
+
+  - term: WalletStatement
+    definition: >
+      A record of all transactions processed through a wallet within a specified date range,
+      including debits, credits, fees, exchange rates, and running balance. Used for reconciliation
+      and audit purposes.
+    related:
+      - Wallet
+
+  - term: PaymentGroup
+    definition: >
+      A logical container for consolidating payment instructions based on criteria such as time period,
+      location, or business unit. Groups can be locked to prevent further modifications and are
+      associated with a specific wallet. Locking a group signals readiness for approval and execution.
+    related:
+      - Wallet
+      - PaymentInstruction
+
+  - term: Beneficiary
+    definition: >
+      A payment recipient — either an individual or a company — who receives payments via the Papaya
+      Global platform. Each beneficiary has entity information (name, address), bank details,
+      country, and currency. Beneficiaries must be created before payment instructions can reference them.
+    related:
+      - BankDetails
+      - Entity
+      - PaymentInstruction
+
+  - term: BankDetails
+    definition: >
+      Banking information required to route a payment to a beneficiary. The required fields vary
+      significantly by country and currency (e.g., BSB + account number for Australia, IBAN + BIC
+      for SEPA). Use the schema endpoint to retrieve the correct field structure for a given
+      country/currency/entity_type combination.
+    related:
+      - Beneficiary
+
+  - term: Entity
+    definition: >
+      The identifying information for a beneficiary, such as full name, date of birth, and address
+      for individuals, or company name and registration details for companies. Structure varies
+      by entity_type and country.
+    related:
+      - Beneficiary
+
+  - term: PaymentInstruction
+    definition: >
+      A record specifying a payment to be made from an organizational wallet to a beneficiary,
+      including amount, currency, execution date, purpose, and approval status. Payment instructions
+      go through a lifecycle: created → approved → executed (sent).
+    related:
+      - Beneficiary
+      - Wallet
+      - PaymentGroup
+      - PaymentStatus
+
+  - term: PaymentStatus
+    definition: >
+      The current state of a payment instruction in its lifecycle. Common statuses include
+      pending (created but not approved), approved (ready for execution), processing (being
+      executed), completed (successfully sent), cancelled, and failed.
+    related:
+      - PaymentInstruction
+
+  - term: AccessToken
+    definition: >
+      A JWT (JSON Web Token) obtained by providing an API key and client secret to the /token
+      endpoint. Tokens are valid for 24 hours and must be included in the Authorization header
+      as a Bearer token for all API requests. Separate credentials exist for sandbox and production.
+    related:
+      - APIKey
+      - ClientSecret
+
+  - term: APIKey
+    definition: >
+      A unique identifier assigned to an API client. Combined with a client_secret to obtain
+      access tokens. Must be kept confidential and never exposed in client-side code or
+      public repositories.
+    related:
+      - AccessToken
+
+  - term: ImportJob
+    definition: >
+      An asynchronous background job for bulk operations such as importing multiple beneficiaries
+      or payment instructions at once. Returns a job_id that can be polled to check status,
+      progress, and any failed records.
+    related:
+      - Beneficiary
+      - PaymentInstruction
+
+  - term: UserTags
+    definition: >
+      Custom key-value metadata that clients can attach to beneficiaries, wallets, payment groups,
+      and payment instructions for filtering, categorization, and reconciliation purposes
+      (e.g., department, employee_id, payroll_cycle).
+    related:
+      - Beneficiary
+      - Wallet
+      - PaymentGroup
+      - PaymentInstruction
+
+  - term: CollectInformation
+    definition: >
+      A feature that generates a secure, time-limited URL allowing a beneficiary to self-serve
+      enter their own bank details, reducing the need for organizations to handle sensitive
+      banking data directly. The URL expires after a set period.
+    related:
+      - Beneficiary
+      - BankDetails
+
+  - term: Webhook
+    definition: >
+      An HTTPS callback notification sent from Papaya Global to a pre-configured endpoint
+      when events occur (e.g., payment completed, status changed). Webhooks are set up through
+      the account manager and require IP whitelisting. They provide real-time event-driven
+      integration without polling.
+    related:
+      - PaymentInstruction
+      - PaymentStatus
+
+  - term: RateLimit
+    definition: >
+      API usage constraint of 500 requests per minute per authenticated user. Rate limit status
+      is communicated via response headers: X-RateLimit-Limit, X-RateLimit-Remaining,
+      X-RateLimit-Used, and X-RateLimit-Reset. Exceeding the limit returns HTTP 429.
+    related:
+      - AccessToken
+
+  - term: Sandbox
+    definition: >
+      A non-production environment for testing API integrations without processing real payments.
+      The sandbox has its own separate credentials and base URL
+      (https://sandbox.papayaglobal.com/api/v1). Use the API Test page in docs for interactive
+      sandbox testing.
+    related:
+      - AccessToken

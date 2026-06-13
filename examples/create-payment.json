@@ -1,0 +1,72 @@
+{
+  "title": "Create Payment Instruction",
+  "description": "Example request to create a payment instruction for a beneficiary.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.papayaglobal.com/api/v1/payments/payments",
+    "headers": {
+      "Authorization": "Bearer <your-jwt-token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "correlation_id": "payroll-2026-06-001",
+      "description": "June 2026 salary payment",
+      "purpose": "salary",
+      "source": {
+        "wallet": "wlt_9f8e7d6c-5b4a-3210-fedc-ba9876543210",
+        "group": "grp_1a2b3c4d-5e6f-7890-abcd-ef0123456789"
+      },
+      "target": {
+        "beneficiary": "ben_a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      },
+      "amount": {
+        "value": 5000.00,
+        "currency": "AUD"
+      },
+      "execution": {
+        "date": "2026-06-30"
+      },
+      "approved": false,
+      "final": false,
+      "user_tags": {
+        "payroll_cycle": "2026-06",
+        "department": "engineering"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "pay_fedcba98-7654-3210-0123-456789abcdef",
+      "correlation_id": "payroll-2026-06-001",
+      "description": "June 2026 salary payment",
+      "purpose": "salary",
+      "source": {
+        "wallet": "wlt_9f8e7d6c-5b4a-3210-fedc-ba9876543210",
+        "group": "grp_1a2b3c4d-5e6f-7890-abcd-ef0123456789"
+      },
+      "target": {
+        "beneficiary": "ben_a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      },
+      "amount": {
+        "value": 5000.00,
+        "currency": "AUD"
+      },
+      "execution": {
+        "date": "2026-06-30"
+      },
+      "approved": false,
+      "final": false,
+      "user_tags": {
+        "payroll_cycle": "2026-06",
+        "department": "engineering"
+      },
+      "info": {
+        "status": "pending",
+        "funding": {},
+        "rate": 1.0,
+        "fees": {}
+      }
+    }
+  }
+}

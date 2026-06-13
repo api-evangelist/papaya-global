@@ -1,0 +1,166 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "papaya": "https://docs.papayaglobal.com/vocabulary#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "id": "@id",
+    "type": "@type",
+
+    "Wallet": "papaya:Wallet",
+    "PaymentGroup": "papaya:PaymentGroup",
+    "Beneficiary": "papaya:Beneficiary",
+    "PaymentInstruction": "papaya:PaymentInstruction",
+    "WalletStatement": "papaya:WalletStatement",
+    "ImportJob": "papaya:ImportJob",
+
+    "wallet": {
+      "@id": "papaya:wallet",
+      "@type": "@id"
+    },
+    "beneficiary": {
+      "@id": "papaya:beneficiary",
+      "@type": "@id"
+    },
+    "group": {
+      "@id": "papaya:group",
+      "@type": "@id"
+    },
+
+    "currency": {
+      "@id": "schema:currency",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "schema:amount"
+    },
+    "balance": {
+      "@id": "papaya:balance",
+      "@type": "xsd:decimal"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "papaya:active",
+      "@type": "xsd:boolean"
+    },
+    "locked": {
+      "@id": "papaya:locked",
+      "@type": "xsd:boolean"
+    },
+    "approved": {
+      "@id": "papaya:approved",
+      "@type": "xsd:boolean"
+    },
+    "status": {
+      "@id": "papaya:status",
+      "@type": "xsd:string"
+    },
+    "entity_type": {
+      "@id": "papaya:entityType",
+      "@type": "xsd:string"
+    },
+    "entity": {
+      "@id": "papaya:entity"
+    },
+    "bank_details": {
+      "@id": "papaya:bankDetails"
+    },
+    "funding": {
+      "@id": "papaya:funding"
+    },
+    "source": {
+      "@id": "papaya:source"
+    },
+    "target": {
+      "@id": "papaya:target"
+    },
+    "execution": {
+      "@id": "papaya:execution"
+    },
+    "user_tags": {
+      "@id": "papaya:userTags"
+    },
+    "correlation_id": {
+      "@id": "papaya:correlationId",
+      "@type": "xsd:string"
+    },
+    "purpose": {
+      "@id": "papaya:purpose",
+      "@type": "xsd:string"
+    },
+    "valid_until": {
+      "@id": "papaya:validUntil",
+      "@type": "xsd:dateTime"
+    },
+    "token": {
+      "@id": "papaya:accessToken",
+      "@type": "xsd:string"
+    },
+    "job_id": {
+      "@id": "papaya:jobId",
+      "@type": "xsd:string"
+    },
+    "started_at": {
+      "@id": "papaya:startedAt",
+      "@type": "xsd:dateTime"
+    },
+    "completed_at": {
+      "@id": "papaya:completedAt",
+      "@type": "xsd:dateTime"
+    },
+    "total": {
+      "@id": "papaya:total",
+      "@type": "xsd:integer"
+    },
+    "processed": {
+      "@id": "papaya:processed",
+      "@type": "xsd:integer"
+    },
+    "failed": {
+      "@id": "papaya:failed",
+      "@type": "xsd:integer"
+    },
+    "progress": {
+      "@id": "papaya:progress",
+      "@container": "@list"
+    },
+    "items": {
+      "@id": "papaya:items",
+      "@container": "@list"
+    },
+    "paging": {
+      "@id": "papaya:paging"
+    },
+    "skip": {
+      "@id": "papaya:skip",
+      "@type": "xsd:integer"
+    },
+    "take": {
+      "@id": "papaya:take",
+      "@type": "xsd:integer"
+    },
+    "iban": {
+      "@id": "papaya:iban",
+      "@type": "xsd:string"
+    },
+    "bic": {
+      "@id": "papaya:bic",
+      "@type": "xsd:string"
+    },
+    "account_number": {
+      "@id": "papaya:accountNumber",
+      "@type": "xsd:string"
+    }
+  }
+}

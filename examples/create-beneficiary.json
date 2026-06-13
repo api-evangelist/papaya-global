@@ -1,0 +1,64 @@
+{
+  "title": "Create Individual Beneficiary",
+  "description": "Example request to create an individual beneficiary for payments in Australia.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries",
+    "headers": {
+      "Authorization": "Bearer <your-jwt-token>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "entity_type": "individual",
+      "country": "AU",
+      "currency": "AUD",
+      "entity": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "date_of_birth": "1985-06-15",
+        "address": {
+          "street": "123 George Street",
+          "city": "Sydney",
+          "state": "NSW",
+          "postal_code": "2000",
+          "country": "AU"
+        }
+      },
+      "bank_details": {
+        "account_name": "Jane Doe",
+        "bsb": "062-000",
+        "account_number": "12345678"
+      },
+      "user_tags": {
+        "department": "engineering",
+        "employee_id": "EMP-001"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "ben_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "type": "beneficiary",
+      "entity_type": "individual",
+      "active": true,
+      "name": "Jane Doe",
+      "country": "AU",
+      "currency": "AUD",
+      "entity": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "date_of_birth": "1985-06-15"
+      },
+      "bank_details": {
+        "account_name": "Jane Doe",
+        "bsb": "062-000",
+        "account_number": "12345678"
+      },
+      "user_tags": {
+        "department": "engineering",
+        "employee_id": "EMP-001"
+      }
+    }
+  }
+}

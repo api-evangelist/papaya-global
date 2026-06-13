@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/papaya-global/main/json-schema/payment.json",
+  "title": "Payment",
+  "description": "A payment instruction in the Papaya Global Workforce Payments API.",
+  "type": "object",
+  "required": ["source", "target", "amount", "execution"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique payment instruction identifier"
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "Optional client-provided correlation identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the payment"
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Purpose or reason for the payment"
+    },
+    "source": {
+      "type": "object",
+      "description": "Source wallet or group for the payment",
+      "properties": {
+        "wallet": {
+          "type": "string",
+          "description": "Wallet ID to fund the payment from"
+        },
+        "group": {
+          "type": "string",
+          "description": "Payment group ID"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Target beneficiary for the payment",
+      "properties": {
+        "beneficiary": {
+          "type": "string",
+          "description": "Beneficiary ID to send the payment to"
+        }
+      }
+    },
+    "amount": {
+      "type": "object",
+      "description": "Payment amount details",
+      "required": ["value", "currency"],
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Numeric payment amount"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 currency code"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "description": "Payment execution scheduling",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Scheduled execution date (YYYY-MM-DD)"
+        }
+      }
+    },
+    "approved": {
+      "type": "boolean",
+      "description": "Whether the payment has been approved"
+    },
+    "final": {
+      "type": "boolean",
+      "description": "Whether the payment is finalized"
+    },
+    "attachments": {
+      "type": "array",
+      "description": "Attached document references",
+      "items": {
+        "type": "string"
+      }
+    },
+    "user_tags": {
+      "type": "object",
+      "description": "Custom key-value tags set by the user",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "info": {
+      "type": "object",
+      "description": "Payment status and processing information",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Current payment status"
+        },
+        "funding": {
+          "type": "object",
+          "description": "Funding details"
+        },
+        "credit": {
+          "type": "object",
+          "description": "Credit details"
+        },
+        "rate": {
+          "type": "number",
+          "description": "Exchange rate applied"
+        },
+        "fees": {
+          "type": "object",
+          "description": "Fee breakdown"
+        }
+      }
+    }
+  }
+}

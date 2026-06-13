@@ -1,0 +1,24 @@
+{
+  "title": "Obtain Access Token",
+  "description": "Example request to authenticate and obtain a JWT bearer token valid for 24 hours.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.papayaglobal.com/api/v1/token",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "api_key": "82725488-22bf-40d1-ace6-9ea6ee42f870",
+      "client_secret": "MyClientSecret!!!",
+      "token_name": "my-integration-token"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "valid_until": "2026-06-14T10:30:00Z",
+      "token_name": "my-integration-token"
+    }
+  }
+}
