@@ -1,7 +1,7 @@
 aid: papaya-global
 name: Papaya Global
 description: Global payroll and workforce management platform with a REST API for managing international payroll, contractor payments, worker records, and compliance across 160+ countries.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/papaya-global/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -18,7 +18,7 @@ apis:
   - aid: papaya-global:workforce-payments-api
     name: Papaya Global Workforce Payments API
     description: REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across international markets.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.papayaglobal.com/
     baseURL: https://api.papayaglobal.com/api/v1
     tags:
