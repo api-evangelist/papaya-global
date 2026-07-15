@@ -35,6 +35,8 @@ apis:
       - type: OpenAPI
         url: openapi/papaya-global-workforce-payments-api.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/papaya-global-agentic-access.yml
   - type: DomainSecurity
     url: security/papaya-global-domain-security.yml
   - type: Authentication
