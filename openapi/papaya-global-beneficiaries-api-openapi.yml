@@ -1,0 +1,656 @@
+openapi: 3.1.0
+info:
+  title: Papaya Global Workforce Payments Authentication Beneficiaries API
+  description: 'REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Papaya Global Support
+    url: https://docs.papayaglobal.com/
+  termsOfService: https://www.papayaglobal.com/terms-of-service/
+  license:
+    name: Proprietary
+    url: https://www.papayaglobal.com/terms-of-service/
+servers:
+- url: https://api.papayaglobal.com/api/v1
+  description: Production
+- url: https://sandbox.papayaglobal.com/api/v1
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Beneficiaries
+  description: Manage payment recipients including individuals and organizations
+paths:
+  /payments/beneficiaries:
+    post:
+      operationId: createBeneficiary
+      summary: Create Beneficiary
+      description: Create a new payment beneficiary (individual or organization).
+      tags:
+      - Beneficiaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BeneficiaryCreateRequest'
+      responses:
+        '201':
+          description: Beneficiary created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listBeneficiaries
+      summary: List Beneficiaries
+      description: Retrieve a paginated list of beneficiaries with optional filtering.
+      tags:
+      - Beneficiaries
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: country
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: Filter by country code (ISO 3166-2)
+      - name: currency
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: Filter by currency code (ISO 4217)
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: take
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of beneficiaries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  facets:
+                    type: object
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Beneficiary'
+                  paging:
+                    $ref: '#/components/schemas/Paging'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/beneficiaries/{id}:
+    get:
+      operationId: getBeneficiary
+      summary: Get Beneficiary Details
+      description: Retrieve detailed information about a specific beneficiary.
+      tags:
+      - Beneficiaries
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Beneficiary details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeneficiaryDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateBeneficiary
+      summary: Update Beneficiary
+      description: Update an existing beneficiary's details.
+      tags:
+      - Beneficiaries
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BeneficiaryCreateRequest'
+      responses:
+        '200':
+          description: Beneficiary updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/beneficiaries/{id}/collect:
+    get:
+      operationId: collectBeneficiaryInfo
+      summary: Collect Beneficiary Bank Details
+      description: Generate a URL for collecting bank details from a beneficiary directly.
+      tags:
+      - Beneficiaries
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        schema:
+          type: string
+      - name: currency
+        in: query
+        schema:
+          type: string
+      - name: entity_type
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Collection URL generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  country:
+                    type: string
+                  currency:
+                    type: string
+                  entity_type:
+                    type: string
+                  expires:
+                    type: string
+                    format: date-time
+                  url:
+                    type: string
+                    format: uri
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/beneficiaries/invite:
+    post:
+      operationId: inviteBeneficiary
+      summary: Invite Beneficiary
+      description: Send an invitation to a beneficiary to complete their profile.
+      tags:
+      - Beneficiaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BeneficiaryInviteRequest'
+            example:
+              firstName: Jane
+              lastName: Doe
+              email: jane.doe@example.com
+      responses:
+        '201':
+          description: Invitation sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeneficiaryInviteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/beneficiaries/invite/resend:
+    post:
+      operationId: resendBeneficiaryInvite
+      summary: Resend Beneficiary Invitation
+      description: Resend an invitation to a beneficiary.
+      tags:
+      - Beneficiaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - beneficiaryId
+              properties:
+                beneficiaryId:
+                  type: string
+      responses:
+        '200':
+          description: Invitation resent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BeneficiaryInviteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/beneficiaries/import:
+    post:
+      operationId: importBeneficiaries
+      summary: Bulk Import Beneficiaries
+      description: Import multiple beneficiaries in bulk via an asynchronous job.
+      tags:
+      - Beneficiaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                update_payments:
+                  type: boolean
+                signature:
+                  type: string
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BeneficiaryCreateRequest'
+      responses:
+        '202':
+          description: Import job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJobStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/beneficiaries/import/{job_id}:
+    get:
+      operationId: getBeneficiaryImportStatus
+      summary: Get Beneficiary Import Status
+      description: Check the status of a bulk beneficiary import job.
+      tags:
+      - Beneficiaries
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Import job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJobStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/beneficiaries/validate:
+    post:
+      operationId: validateBeneficiaries
+      summary: Validate Beneficiaries
+      description: Validate beneficiary data before import.
+      tags:
+      - Beneficiaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      entity_type:
+                        type: string
+                      bank_details:
+                        type: object
+                      entity:
+                        type: object
+      responses:
+        '200':
+          description: Validation results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totals:
+                    type: object
+                  valid:
+                    type: array
+                    items:
+                      type: object
+                  invalid:
+                    type: array
+                    items:
+                      type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/beneficiaries/schema/{entity_type}/{country}/{currency}:
+    get:
+      operationId: getBeneficiarySchema
+      summary: Get Beneficiary Schema
+      description: Retrieve the JSON schema for beneficiary data for a specific entity type, country, and currency combination.
+      tags:
+      - Beneficiaries
+      parameters:
+      - name: entity_type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - individual
+          - company
+      - name: country
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ISO 3166-2 country code
+      - name: currency
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ISO 4217 currency code
+      - name: entity_country
+        in: query
+        schema:
+          type: string
+        description: Entity's country of origin if different
+      responses:
+        '200':
+          description: Beneficiary schema
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  currency:
+                    type: string
+                  country:
+                    type: string
+                  entity_type:
+                    type: string
+                  schema:
+                    type: object
+                    description: JSON Schema for the beneficiary data
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/beneficiaries/bulkimport/invite:
+    post:
+      operationId: bulkInviteBeneficiaries
+      summary: Bulk Invite Beneficiaries
+      description: Send invitations to multiple beneficiaries in bulk.
+      tags:
+      - Beneficiaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BeneficiaryInviteRequest'
+      responses:
+        '202':
+          description: Bulk invite job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJobStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    BankDetails:
+      type: object
+      description: Bank details for a beneficiary (schema varies by country/currency)
+      additionalProperties: true
+    ImportJobStatus:
+      type: object
+      properties:
+        job_id:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        total:
+          type: integer
+        processed:
+          type: integer
+        processing:
+          type: integer
+        failed:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+        progress:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
+    BeneficiaryCreateRequest:
+      type: object
+      required:
+      - entity_type
+      - country
+      - currency
+      - entity
+      - bank_details
+      properties:
+        entity_type:
+          type: string
+          enum:
+          - individual
+          - company
+        id:
+          type: string
+          description: Optional custom beneficiary ID
+        country:
+          type: string
+          description: ISO 3166-2 country code
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        tags:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
+        entity:
+          $ref: '#/components/schemas/Entity'
+        bank_details:
+          $ref: '#/components/schemas/BankDetails'
+    BeneficiaryDetail:
+      allOf:
+      - $ref: '#/components/schemas/Beneficiary'
+      - type: object
+        properties:
+          status:
+            type: string
+          payments:
+            type: array
+            items:
+              type: object
+          issues:
+            type: array
+            items:
+              type: object
+    Entity:
+      type: object
+      description: Entity information (person or organization)
+      additionalProperties: true
+    BeneficiaryInviteRequest:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - email
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        beneficiaryId:
+          type: string
+        payGroupId:
+          type: string
+        invoiceCurrency:
+          type: string
+        user_tags:
+          type: object
+    Beneficiary:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        active:
+          type: boolean
+        name:
+          type: string
+        entity_type:
+          type: string
+          enum:
+          - individual
+          - company
+        country:
+          type: string
+          description: ISO 3166-2 country code
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        entity:
+          $ref: '#/components/schemas/Entity'
+        bank_details:
+          $ref: '#/components/schemas/BankDetails'
+        user_tags:
+          type: object
+    BeneficiaryInviteResponse:
+      type: object
+      properties:
+        invite:
+          type: string
+          format: date-time
+        update:
+          type: string
+          format: date-time
+        create:
+          type: string
+          format: date-time
+        name:
+          type: string
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

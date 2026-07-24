@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: Papaya Global Workforce Payments Authentication Wallets API
+  description: 'REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Papaya Global Support
+    url: https://docs.papayaglobal.com/
+  termsOfService: https://www.papayaglobal.com/terms-of-service/
+  license:
+    name: Proprietary
+    url: https://www.papayaglobal.com/terms-of-service/
+servers:
+- url: https://api.papayaglobal.com/api/v1
+  description: Production
+- url: https://sandbox.papayaglobal.com/api/v1
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Wallets
+  description: Manage organizational wallets for payment funding
+paths:
+  /payments/wallets:
+    get:
+      operationId: listWallets
+      summary: List Wallets
+      description: Retrieve a list of organizational wallets with optional filtering.
+      tags:
+      - Wallets
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+        description: Filter by wallet ID
+      - name: active_only
+        in: query
+        schema:
+          type: boolean
+        description: Return only active wallets
+      - name: currency
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: Filter by currency code (ISO 4217)
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Number of records to skip for pagination
+      - name: take
+        in: query
+        schema:
+          type: integer
+          default: 50
+        description: Number of records to return
+      responses:
+        '200':
+          description: List of wallets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Wallet'
+                  paging:
+                    $ref: '#/components/schemas/Paging'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /payments/wallets/{id}/statement:
+    get:
+      operationId: getWalletStatement
+      summary: Get Wallet Statement
+      description: Retrieve transaction statement for a specific wallet within a date range.
+      tags:
+      - Wallets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Wallet ID
+      - name: start
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: Start date-time for statement period (YYYY-MM-DDTHH:mm:ssZ)
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: End date-time for statement period (YYYY-MM-DDTHH:mm:ssZ)
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: take
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: Wallet statement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletStatement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
+    Wallet:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        name:
+          type: string
+        owner:
+          type: string
+        funding:
+          type: object
+          properties:
+            name:
+              type: string
+            country:
+              type: string
+            account_number:
+              type: string
+            bic:
+              type: string
+            iban:
+              type: string
+        balance:
+          type: number
+          format: double
+        user_tags:
+          type: object
+        state:
+          type: string
+    WalletStatement:
+      type: object
+      properties:
+        id:
+          type: string
+        currency:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              id:
+                type: string
+              description:
+                type: string
+              execution_id:
+                type: string
+              date:
+                type: string
+                format: date-time
+              action:
+                type: string
+              debit:
+                type: number
+              credit:
+                type: number
+              fees:
+                type: number
+              rate:
+                type: number
+              balance:
+                type: number
+              counterpart:
+                type: object
+              user_tags:
+                type: object
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: Papaya Global Workforce Payments Authentication API
+  description: 'REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Papaya Global Support
+    url: https://docs.papayaglobal.com/
+  termsOfService: https://www.papayaglobal.com/terms-of-service/
+  license:
+    name: Proprietary
+    url: https://www.papayaglobal.com/terms-of-service/
+servers:
+- url: https://api.papayaglobal.com/api/v1
+  description: Production
+- url: https://sandbox.papayaglobal.com/api/v1
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+  description: Obtain access tokens for API authentication
+paths:
+  /token:
+    post:
+      operationId: createToken
+      summary: Obtain Access Token
+      description: 'Authenticates with API key and client secret to obtain a JWT bearer token valid for 24 hours. Use the token in subsequent requests via the Authorization: Bearer header.
+
+        '
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+            example:
+              api_key: 82725488-22bf-40d1-ace6-9ea6ee42f870
+              client_secret: MySecret!!!
+              token_name: 82725488-22bf
+      responses:
+        '201':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: JWT bearer token
+        valid_until:
+          type: string
+          format: date-time
+          description: Token expiration timestamp (ISO 8601)
+        token_name:
+          type: string
+          description: Token identifier
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
+    TokenRequest:
+      type: object
+      required:
+      - api_key
+      - client_secret
+      properties:
+        api_key:
+          type: string
+          description: Unique client identifier
+        client_secret:
+          type: string
+          description: Client secret key
+        token_name:
+          type: string
+          description: Optional custom token identifier
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

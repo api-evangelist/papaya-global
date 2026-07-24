@@ -1,0 +1,394 @@
+openapi: 3.1.0
+info:
+  title: Papaya Global Workforce Payments Authentication Groups API
+  description: 'REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Papaya Global Support
+    url: https://docs.papayaglobal.com/
+  termsOfService: https://www.papayaglobal.com/terms-of-service/
+  license:
+    name: Proprietary
+    url: https://www.papayaglobal.com/terms-of-service/
+servers:
+- url: https://api.papayaglobal.com/api/v1
+  description: Production
+- url: https://sandbox.papayaglobal.com/api/v1
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Groups
+  description: Manage payment groups to consolidate payment requests
+paths:
+  /payments/groups:
+    post:
+      operationId: createGroup
+      summary: Create Payment Group
+      description: Create a new payment group to consolidate payment requests.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreateRequest'
+      responses:
+        '201':
+          description: Payment group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listGroups
+      summary: List Payment Groups
+      description: Retrieve a list of payment groups with optional filtering.
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: Filter by group IDs
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: description
+        in: query
+        schema:
+          type: string
+      - name: locked
+        in: query
+        schema:
+          type: array
+          items:
+            type: boolean
+      - name: wallet
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: take
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of payment groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GroupWithInfo'
+                  paging:
+                    $ref: '#/components/schemas/Paging'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/groups/{id}:
+    get:
+      operationId: getGroup
+      summary: Get Group Details
+      description: Retrieve detailed information about a specific payment group.
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateGroup
+      summary: Update Payment Group
+      description: Update details of an existing payment group.
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUpdateRequest'
+      responses:
+        '200':
+          description: Updated payment group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteGroup
+      summary: Delete Payment Group
+      description: Delete a payment group and optionally clear associated payments.
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clear
+        in: query
+        schema:
+          type: boolean
+        description: Clear associated payments when deleting
+      responses:
+        '200':
+          description: Group deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      result:
+                        type: string
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/groups/{id}/lock:
+    patch:
+      operationId: lockGroup
+      summary: Lock Payment Group
+      description: Lock a payment group to prevent further modifications.
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group locked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: unlockGroup
+      summary: Unlock Payment Group
+      description: Unlock a payment group to allow modifications.
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group unlocked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    GroupWithInfo:
+      allOf:
+      - $ref: '#/components/schemas/Group'
+      - type: object
+        properties:
+          wallet_details:
+            $ref: '#/components/schemas/Wallet'
+          payment_funding:
+            type: object
+          payment_status:
+            type: object
+    GroupCreateRequest:
+      type: object
+      required:
+      - wallet
+      - name
+      properties:
+        wallet:
+          type: string
+          description: Wallet ID to associate with the group
+        name:
+          type: string
+        description:
+          type: string
+        user_tags:
+          type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
+    Wallet:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        name:
+          type: string
+        owner:
+          type: string
+        funding:
+          type: object
+          properties:
+            name:
+              type: string
+            country:
+              type: string
+            account_number:
+              type: string
+            bic:
+              type: string
+            iban:
+              type: string
+        balance:
+          type: number
+          format: double
+        user_tags:
+          type: object
+        state:
+          type: string
+    Group:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        locked:
+          type: boolean
+        name:
+          type: string
+        user_tags:
+          type: object
+        wallet:
+          type: string
+    GroupUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        user_tags:
+          type: object
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

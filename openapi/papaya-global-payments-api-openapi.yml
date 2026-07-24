@@ -1,0 +1,531 @@
+openapi: 3.1.0
+info:
+  title: Papaya Global Workforce Authentication Payments API
+  description: 'REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Papaya Global Support
+    url: https://docs.papayaglobal.com/
+  termsOfService: https://www.papayaglobal.com/terms-of-service/
+  license:
+    name: Proprietary
+    url: https://www.papayaglobal.com/terms-of-service/
+servers:
+- url: https://api.papayaglobal.com/api/v1
+  description: Production
+- url: https://sandbox.papayaglobal.com/api/v1
+  description: Sandbox
+security:
+- BearerAuth: []
+tags:
+- name: Payments
+  description: Manage payment instructions and execution
+paths:
+  /payments/payments:
+    post:
+      operationId: createPayment
+      summary: Create Payment Instruction
+      description: Create a new payment instruction for a beneficiary.
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCreateRequest'
+      responses:
+        '201':
+          description: Payment instruction created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listPayments
+      summary: List Payment Instructions
+      description: Retrieve a paginated list of payment instructions.
+      tags:
+      - Payments
+      parameters:
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: take
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of payment instructions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Payment'
+                  paging:
+                    $ref: '#/components/schemas/Paging'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/payments/{id}:
+    get:
+      operationId: getPayment
+      summary: Get Payment Details
+      description: Retrieve details of a specific payment instruction.
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment instruction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updatePayment
+      summary: Update Payment Instruction
+      description: Update an existing payment instruction.
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentUpdateRequest'
+      responses:
+        '200':
+          description: Payment updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/payments/approve:
+    patch:
+      operationId: approvePayment
+      summary: Approve Payment
+      description: Approve one or more payment instructions.
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Payment ID to approve
+      responses:
+        '200':
+          description: Payment approved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string
+                        result:
+                          type: string
+                        correlation_id:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: unapprovePayment
+      summary: Unapprove Payment
+      description: Remove approval from a payment instruction.
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Payment ID to unapprove
+      responses:
+        '200':
+          description: Payment unapproved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string
+                        result:
+                          type: string
+                        correlation_id:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/payments/{id}/send:
+    post:
+      operationId: executePayment
+      summary: Execute Payment
+      description: Execute (send) an approved payment instruction.
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment executed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payments/payments/cancel:
+    post:
+      operationId: cancelPayment
+      summary: Cancel Payment
+      description: Cancel a payment instruction.
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+                cancel_reason:
+                  type: string
+      responses:
+        '200':
+          description: Payment cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/payments/import:
+    post:
+      operationId: importPayments
+      summary: Bulk Import Payments
+      description: Import multiple payment instructions in bulk via an asynchronous job.
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PaymentCreateRequest'
+      responses:
+        '202':
+          description: Import job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJobStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /payments/payments/import/{job_id}:
+    get:
+      operationId: getPaymentImportStatus
+      summary: Get Payment Import Status
+      description: Check the status of a bulk payment import job.
+      tags:
+      - Payments
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Import job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJobStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ImportJobStatus:
+      type: object
+      properties:
+        job_id:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        total:
+          type: integer
+        processed:
+          type: integer
+        processing:
+          type: integer
+        failed:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+        progress:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
+    PaymentCreateRequest:
+      type: object
+      required:
+      - source
+      - target
+      - amount
+      - execution
+      properties:
+        correlation_id:
+          type: string
+        description:
+          type: string
+        purpose:
+          type: string
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
+    PaymentSource:
+      type: object
+      description: Source wallet or account for the payment
+      properties:
+        wallet:
+          type: string
+          description: Wallet ID
+        group:
+          type: string
+          description: Group ID
+    PaymentTarget:
+      type: object
+      description: Target beneficiary for the payment
+      properties:
+        beneficiary:
+          type: string
+          description: Beneficiary ID
+    PaymentExecution:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Scheduled execution date (YYYY-MM-DD)
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        correlation_id:
+          type: string
+        description:
+          type: string
+        purpose:
+          type: string
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
+        info:
+          type: object
+          properties:
+            status:
+              type: string
+            funding:
+              type: object
+            credit:
+              type: object
+            rate:
+              type: number
+            fees:
+              type: object
+    PaymentAmount:
+      type: object
+      properties:
+        value:
+          type: number
+        currency:
+          type: string
+          description: ISO 4217 currency code
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+    PaymentUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        purpose:
+          type: string
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
