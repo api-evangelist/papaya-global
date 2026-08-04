@@ -1,0 +1,22 @@
+{
+  "provider": "papaya-global",
+  "sources": [
+    "papaya-global-authentication-api-openapi.yml",
+    "papaya-global-beneficiaries-api-openapi.yml",
+    "papaya-global-groups-api-openapi.yml",
+    "papaya-global-payments-api-openapi.yml",
+    "papaya-global-wallets-api-openapi.yml"
+  ],
+  "outputs": [
+    "papaya-global-authentication-api-openapi.yml",
+    "papaya-global-beneficiaries-api-openapi.yml",
+    "papaya-global-groups-api-openapi.yml",
+    "papaya-global-payments-api-openapi.yml",
+    "papaya-global-wallets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
