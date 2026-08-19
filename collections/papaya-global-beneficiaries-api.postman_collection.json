@@ -1,0 +1,2752 @@
+{
+  "item": [
+    {
+      "id": "3b312b1b-f0c3-4ebc-bd6d-4839814e145b",
+      "name": "Beneficiaries",
+      "description": {
+        "content": "Manage payment recipients including individuals and organizations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba553a0a-b0e5-4ab0-81d9-53beb9ff99b8",
+          "name": "Create Beneficiary",
+          "request": {
+            "name": "Create Beneficiary",
+            "description": {
+              "content": "Create a new payment beneficiary (individual or organization).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": \"string\"\n  },\n  \"bank_details\": {\n    \"key_0\": false\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2790c874-ea1a-482c-9249-7f37f23076d5",
+              "name": "Beneficiary created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"active\": true,\n  \"name\": \"string\",\n  \"entity_type\": \"individual\",\n  \"country\": \"string\",\n  \"currency\": \"string\",\n  \"entity\": {\n    \"key_0\": true\n  },\n  \"bank_details\": {\n    \"key_0\": 1020.7843934507366,\n    \"key_1\": 8210.860479004226\n  },\n  \"user_tags\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c4ad1d5-4ab1-4c19-a9f7-59e1bab59a23",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16401b24-4daa-425f-8a29-b1eb4ce5c342",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dc04b4b-8c09-41b9-ab23-c189db6657bc",
+          "name": "List Beneficiaries",
+          "request": {
+            "name": "List Beneficiaries",
+            "description": {
+              "content": "Retrieve a paginated list of beneficiaries with optional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Filter by country code (ISO 3166-2)"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Filter by country code (ISO 3166-2)"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Filter by currency code (ISO 4217)"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Filter by currency code (ISO 4217)"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73218e3a-36ef-4010-9e2b-5d86b6e310a4",
+              "name": "List of beneficiaries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"facets\": {},\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"active\": false,\n      \"name\": \"string\",\n      \"entity_type\": \"company\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 8510.143888069799,\n        \"key_1\": \"string\"\n      },\n      \"bank_details\": {\n        \"key_0\": false\n      },\n      \"user_tags\": {}\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"active\": true,\n      \"name\": \"string\",\n      \"entity_type\": \"individual\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 5750\n      },\n      \"bank_details\": {\n        \"key_0\": 4524.028692723438,\n        \"key_1\": true\n      },\n      \"user_tags\": {}\n    }\n  ],\n  \"paging\": {\n    \"skip\": 5958,\n    \"take\": 1250\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c0aef42-3c34-4eff-a959-e665337ee21a",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e69f49a-6e6f-4b53-918b-ca471e55e8fe",
+          "name": "Get Beneficiary Details",
+          "request": {
+            "name": "Get Beneficiary Details",
+            "description": {
+              "content": "Retrieve detailed information about a specific beneficiary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b499b94d-683a-4243-9cbd-52b26b6e75d6",
+              "name": "Beneficiary details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"active\": false,\n  \"name\": \"string\",\n  \"entity_type\": \"company\",\n  \"country\": \"string\",\n  \"currency\": \"string\",\n  \"entity\": {\n    \"key_0\": 4276.238075743021,\n    \"key_1\": \"string\"\n  },\n  \"bank_details\": {\n    \"key_0\": 384.7930548255796\n  },\n  \"user_tags\": {},\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf1755c7-c6ad-42df-8dd8-14663ef0a193",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b2dbe5e-ef33-45c0-a66c-009c9aee6fed",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85daa659-15c3-491f-951a-e997a65c5802",
+          "name": "Update Beneficiary",
+          "request": {
+            "name": "Update Beneficiary",
+            "description": {
+              "content": "Update an existing beneficiary's details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": \"string\"\n  },\n  \"bank_details\": {\n    \"key_0\": false\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ade3e75e-51bf-4f55-8d27-4e64e494af10",
+              "name": "Beneficiary updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"active\": true,\n  \"name\": \"string\",\n  \"entity_type\": \"individual\",\n  \"country\": \"string\",\n  \"currency\": \"string\",\n  \"entity\": {\n    \"key_0\": true\n  },\n  \"bank_details\": {\n    \"key_0\": 1020.7843934507366,\n    \"key_1\": 8210.860479004226\n  },\n  \"user_tags\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "437c15d8-d011-4643-96b2-5f30464adc93",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0595693d-d4a2-414a-bb92-8a27032493b8",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46a4518a-3656-4df4-a38b-038edecb5c0b",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"entity\": {\n    \"key_0\": false\n  },\n  \"bank_details\": {\n    \"key_0\": true,\n    \"key_1\": 4175.91146993126,\n    \"key_2\": 9553\n  },\n  \"id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_tags\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6853ef8c-6317-48f3-b6b3-8e04238d48ff",
+          "name": "Collect Beneficiary Bank Details",
+          "request": {
+            "name": "Collect Beneficiary Bank Details",
+            "description": {
+              "content": "Generate a URL for collecting bank details from a beneficiary directly.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                ":id",
+                "collect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8dc78775-99fc-40e5-8a79-face384aa5a9",
+              "name": "Collection URL generated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id",
+                    "collect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"country\": \"string\",\n  \"currency\": \"string\",\n  \"entity_type\": \"string\",\n  \"expires\": \"1949-03-06T01:53:49.460Z\",\n  \"url\": \"https://YqPLJS.ejO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1700397-c0fb-408a-b95c-f3a6dd399a40",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id",
+                    "collect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c228f3ec-083e-4efa-86f0-26c9f0000503",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    ":id",
+                    "collect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f3aa077-c830-4ec5-9c36-fc59a9c4e23c",
+          "name": "Invite Beneficiary",
+          "request": {
+            "name": "Invite Beneficiary",
+            "description": {
+              "content": "Send an invitation to a beneficiary to complete their profile.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"middleName\": \"<string>\",\n  \"beneficiaryId\": \"<string>\",\n  \"payGroupId\": \"<string>\",\n  \"invoiceCurrency\": \"<string>\",\n  \"user_tags\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d71ee43a-ba8c-4951-bb9d-65ff0ad2a095",
+              "name": "Invitation sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invite\": \"2006-03-20T04:42:06.042Z\",\n  \"update\": \"1969-05-29T19:49:37.354Z\",\n  \"create\": \"1997-11-09T10:19:24.926Z\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "406ae5c6-70ab-4352-9e4d-5e0f219d8fb1",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66e4b378-3c2f-47b5-937f-de8e5f2179b3",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f756ce04-8391-4ec1-a743-d9a61a454e9b",
+          "name": "Resend Beneficiary Invitation",
+          "request": {
+            "name": "Resend Beneficiary Invitation",
+            "description": {
+              "content": "Resend an invitation to a beneficiary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "invite",
+                "resend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beneficiaryId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b753196-5d56-4749-8a62-f3afbe3e6d76",
+              "name": "Invitation resent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "invite",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiaryId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invite\": \"2006-03-20T04:42:06.042Z\",\n  \"update\": \"1969-05-29T19:49:37.354Z\",\n  \"create\": \"1997-11-09T10:19:24.926Z\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "931b79f3-7ce7-4963-8616-5d4d9abf4a76",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "invite",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiaryId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e0c0af4-4a98-4e45-a3c7-ac24d6fb17bf",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "invite",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiaryId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2543c4db-be54-4b07-aad2-ea39816aa16f",
+          "name": "Bulk Import Beneficiaries",
+          "request": {
+            "name": "Bulk Import Beneficiaries",
+            "description": {
+              "content": "Import multiple beneficiaries in bulk via an asynchronous job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"update_payments\": \"<boolean>\",\n  \"signature\": \"<string>\",\n  \"items\": [\n    {\n      \"entity_type\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"entity\": {\n        \"key_0\": 992.9557415301582\n      },\n      \"bank_details\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": 9649.031462172694\n      },\n      \"id\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_tags\": \"<object>\"\n    },\n    {\n      \"entity_type\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"entity\": {\n        \"key_0\": 4241,\n        \"key_1\": 5148,\n        \"key_2\": 4431\n      },\n      \"bank_details\": {\n        \"key_0\": true\n      },\n      \"id\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_tags\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5edfacf1-b318-467a-89c8-eeb4db72c5e5",
+              "name": "Import job started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"update_payments\": \"<boolean>\",\n  \"signature\": \"<string>\",\n  \"items\": [\n    {\n      \"entity_type\": \"individual\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 2943.9038392229877,\n        \"key_1\": true\n      },\n      \"bank_details\": {\n        \"key_0\": 5847\n      },\n      \"id\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_tags\": {}\n    },\n    {\n      \"entity_type\": \"company\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 8685.038871631707,\n        \"key_1\": \"string\"\n      },\n      \"bank_details\": {\n        \"key_0\": false\n      },\n      \"id\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_tags\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"started_at\": \"2022-11-12T18:36:16.569Z\",\n  \"completed_at\": \"2019-11-12T01:03:57.675Z\",\n  \"total\": 4133,\n  \"processed\": 9901,\n  \"processing\": 3220,\n  \"failed\": 6301,\n  \"status\": \"processing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d4d282d-228c-4760-9d0c-c9c45d8049a5",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"update_payments\": \"<boolean>\",\n  \"signature\": \"<string>\",\n  \"items\": [\n    {\n      \"entity_type\": \"individual\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 2943.9038392229877,\n        \"key_1\": true\n      },\n      \"bank_details\": {\n        \"key_0\": 5847\n      },\n      \"id\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_tags\": {}\n    },\n    {\n      \"entity_type\": \"company\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 8685.038871631707,\n        \"key_1\": \"string\"\n      },\n      \"bank_details\": {\n        \"key_0\": false\n      },\n      \"id\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_tags\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "311ba680-cb03-4092-a87a-cb35cd95e676",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"update_payments\": \"<boolean>\",\n  \"signature\": \"<string>\",\n  \"items\": [\n    {\n      \"entity_type\": \"individual\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 2943.9038392229877,\n        \"key_1\": true\n      },\n      \"bank_details\": {\n        \"key_0\": 5847\n      },\n      \"id\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_tags\": {}\n    },\n    {\n      \"entity_type\": \"company\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"entity\": {\n        \"key_0\": 8685.038871631707,\n        \"key_1\": \"string\"\n      },\n      \"bank_details\": {\n        \"key_0\": false\n      },\n      \"id\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_tags\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02c0d1b4-02c4-43d7-955e-6f77ea75164b",
+          "name": "Get Beneficiary Import Status",
+          "request": {
+            "name": "Get Beneficiary Import Status",
+            "description": {
+              "content": "Check the status of a bulk beneficiary import job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "import",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02f5784b-83d2-4015-9fcf-de60aafbadc8",
+              "name": "Import job status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "import",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"started_at\": \"2022-11-12T18:36:16.569Z\",\n  \"completed_at\": \"2019-11-12T01:03:57.675Z\",\n  \"total\": 4133,\n  \"processed\": 9901,\n  \"processing\": 3220,\n  \"failed\": 6301,\n  \"status\": \"processing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69706e9d-4532-4b42-a4f4-1014a84fe20c",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "import",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4247ecbd-73ef-4323-bd6c-be9475d03ed2",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "import",
+                    ":job_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2870dcf8-3363-4aec-96a2-87ff72f48987",
+          "name": "Validate Beneficiaries",
+          "request": {
+            "name": "Validate Beneficiaries",
+            "description": {
+              "content": "Validate beneficiary data before import.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"entity_type\": \"<string>\",\n      \"bank_details\": \"<object>\",\n      \"entity\": \"<object>\"\n    },\n    {\n      \"entity_type\": \"<string>\",\n      \"bank_details\": \"<object>\",\n      \"entity\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f48f581-17aa-4c8e-aa1b-57351335e65a",
+              "name": "Validation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"entity_type\": \"<string>\",\n      \"bank_details\": \"<object>\",\n      \"entity\": \"<object>\"\n    },\n    {\n      \"entity_type\": \"<string>\",\n      \"bank_details\": \"<object>\",\n      \"entity\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totals\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb8e947b-bbaf-46df-be33-126cc9c2dbb9",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"entity_type\": \"<string>\",\n      \"bank_details\": \"<object>\",\n      \"entity\": \"<object>\"\n    },\n    {\n      \"entity_type\": \"<string>\",\n      \"bank_details\": \"<object>\",\n      \"entity\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "911ea91d-64d0-42e5-986e-7a9c5f8a2355",
+          "name": "Get Beneficiary Schema",
+          "request": {
+            "name": "Get Beneficiary Schema",
+            "description": {
+              "content": "Retrieve the JSON schema for beneficiary data for a specific entity type, country, and currency combination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "schema",
+                ":entity_type",
+                ":country",
+                ":currency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_country",
+                  "value": "<string>",
+                  "description": "Entity's country of origin if different"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity_type",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country",
+                  "description": "(Required) ISO 3166-2 country code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currency",
+                  "description": "(Required) ISO 4217 currency code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3409095e-f310-4027-9eb5-9681a6027cd4",
+              "name": "Beneficiary schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "schema",
+                    ":entity_type",
+                    ":country",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) ISO 3166-2 country code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) ISO 4217 currency code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currency\": \"string\",\n  \"country\": \"string\",\n  \"entity_type\": \"string\",\n  \"schema\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea89393a-ab5e-4ced-b38f-c693607a381e",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "schema",
+                    ":entity_type",
+                    ":country",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) ISO 3166-2 country code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) ISO 4217 currency code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2c10619-d676-4920-b699-f8075c80a9cd",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "schema",
+                    ":entity_type",
+                    ":country",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) ISO 3166-2 country code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) ISO 4217 currency code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99e255b4-6397-483d-8318-1e7001630b6c",
+          "name": "Bulk Invite Beneficiaries",
+          "request": {
+            "name": "Bulk Invite Beneficiaries",
+            "description": {
+              "content": "Send invitations to multiple beneficiaries in bulk.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "beneficiaries",
+                "bulkimport",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"middleName\": \"<string>\",\n      \"beneficiaryId\": \"<string>\",\n      \"payGroupId\": \"<string>\",\n      \"invoiceCurrency\": \"<string>\",\n      \"user_tags\": \"<object>\"\n    },\n    {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"middleName\": \"<string>\",\n      \"beneficiaryId\": \"<string>\",\n      \"payGroupId\": \"<string>\",\n      \"invoiceCurrency\": \"<string>\",\n      \"user_tags\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5048c4d7-7e4a-4257-b170-799b5fddc977",
+              "name": "Bulk invite job started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "bulkimport",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"1AKTeschd8W@dwlStMnrPEPxvQcRiTl.nxk\",\n      \"middleName\": \"string\",\n      \"beneficiaryId\": \"string\",\n      \"payGroupId\": \"string\",\n      \"invoiceCurrency\": \"string\",\n      \"user_tags\": {}\n    },\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"LOzrNjV2e@YOzZbIAUNgNUFTNcSydLM.to\",\n      \"middleName\": \"string\",\n      \"beneficiaryId\": \"string\",\n      \"payGroupId\": \"string\",\n      \"invoiceCurrency\": \"string\",\n      \"user_tags\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"started_at\": \"2022-11-12T18:36:16.569Z\",\n  \"completed_at\": \"2019-11-12T01:03:57.675Z\",\n  \"total\": 4133,\n  \"processed\": 9901,\n  \"processing\": 3220,\n  \"failed\": 6301,\n  \"status\": \"processing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2409474-665e-4f5a-ae98-6dae4402cd72",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "bulkimport",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"1AKTeschd8W@dwlStMnrPEPxvQcRiTl.nxk\",\n      \"middleName\": \"string\",\n      \"beneficiaryId\": \"string\",\n      \"payGroupId\": \"string\",\n      \"invoiceCurrency\": \"string\",\n      \"user_tags\": {}\n    },\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"LOzrNjV2e@YOzZbIAUNgNUFTNcSydLM.to\",\n      \"middleName\": \"string\",\n      \"beneficiaryId\": \"string\",\n      \"payGroupId\": \"string\",\n      \"invoiceCurrency\": \"string\",\n      \"user_tags\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f31323d-6c43-4332-b57c-663628447790",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "beneficiaries",
+                    "bulkimport",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"1AKTeschd8W@dwlStMnrPEPxvQcRiTl.nxk\",\n      \"middleName\": \"string\",\n      \"beneficiaryId\": \"string\",\n      \"payGroupId\": \"string\",\n      \"invoiceCurrency\": \"string\",\n      \"user_tags\": {}\n    },\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"LOzrNjV2e@YOzZbIAUNgNUFTNcSydLM.to\",\n      \"middleName\": \"string\",\n      \"beneficiaryId\": \"string\",\n      \"payGroupId\": \"string\",\n      \"invoiceCurrency\": \"string\",\n      \"user_tags\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1971-11-19T18:30:48.123Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.papayaglobal.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c58a619c-6a44-4c72-aad6-0947b40029a0",
+    "name": "Papaya Global Workforce Payments Authentication Beneficiaries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.\n\n\nContact Support:\n Name: Papaya Global Support",
+      "type": "text/plain"
+    }
+  }
+}

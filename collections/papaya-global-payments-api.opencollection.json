@@ -1,0 +1,206 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Papaya Global Workforce Authentication Payments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payment Instructions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments",
+            "params": [
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of payment instructions."
+        },
+        {
+          "info": {
+            "name": "Create Payment Instruction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new payment instruction for a beneficiary."
+        },
+        {
+          "info": {
+            "name": "Get Payment Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific payment instruction."
+        },
+        {
+          "info": {
+            "name": "Update Payment Instruction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing payment instruction."
+        },
+        {
+          "info": {
+            "name": "Approve Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/approve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Payment ID to approve"
+              }
+            ]
+          },
+          "docs": "Approve one or more payment instructions."
+        },
+        {
+          "info": {
+            "name": "Unapprove Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/approve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Payment ID to unapprove"
+              }
+            ]
+          },
+          "docs": "Remove approval from a payment instruction."
+        },
+        {
+          "info": {
+            "name": "Execute Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/:id/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Execute (send) an approved payment instruction."
+        },
+        {
+          "info": {
+            "name": "Cancel Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a payment instruction."
+        },
+        {
+          "info": {
+            "name": "Bulk Import Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import multiple payment instructions in bulk via an asynchronous job."
+        },
+        {
+          "info": {
+            "name": "Get Payment Import Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/payments/import/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the status of a bulk payment import job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

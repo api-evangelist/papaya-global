@@ -1,0 +1,603 @@
+{
+  "item": [
+    {
+      "id": "1b79f47f-f0d4-4005-abc3-322779f07726",
+      "name": "Wallets",
+      "description": {
+        "content": "Manage organizational wallets for payment funding",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf035311-9696-4197-aacf-e64e3f556631",
+          "name": "List Wallets",
+          "request": {
+            "name": "List Wallets",
+            "description": {
+              "content": "Retrieve a list of organizational wallets with optional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "wallets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Filter by wallet ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "active_only",
+                  "value": "<boolean>",
+                  "description": "Return only active wallets"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Filter by currency code (ISO 4217)"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Filter by currency code (ISO 4217)"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "50",
+                  "description": "Number of records to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15aafb63-4a37-4073-982e-95685762527e",
+              "name": "List of wallets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "wallets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"currency\": \"string\",\n      \"name\": \"string\",\n      \"owner\": \"string\",\n      \"funding\": {\n        \"name\": \"string\",\n        \"country\": \"string\",\n        \"account_number\": \"string\",\n        \"bic\": \"string\",\n        \"iban\": \"string\"\n      },\n      \"balance\": 5967.633290952139,\n      \"user_tags\": {},\n      \"state\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"currency\": \"string\",\n      \"name\": \"string\",\n      \"owner\": \"string\",\n      \"funding\": {\n        \"name\": \"string\",\n        \"country\": \"string\",\n        \"account_number\": \"string\",\n        \"bic\": \"string\",\n        \"iban\": \"string\"\n      },\n      \"balance\": 6634.0568674933575,\n      \"user_tags\": {},\n      \"state\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"skip\": 4670,\n    \"take\": 9903\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b50dde39-3253-4826-8d3f-7e89f75cb396",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "wallets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1969-04-05T01:14:00.258Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "770433f5-cea6-4d11-b259-a2e572bea404",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "wallets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1969-04-05T01:14:00.258Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "509bea07-b45d-4ca0-8bb7-362813ea81c8",
+          "name": "Get Wallet Statement",
+          "request": {
+            "name": "Get Wallet Statement",
+            "description": {
+              "content": "Retrieve transaction statement for a specific wallet within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                "wallets",
+                ":id",
+                "statement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date-time for statement period (YYYY-MM-DDTHH:mm:ssZ)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date-time for statement period (YYYY-MM-DDTHH:mm:ssZ)"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "take",
+                  "value": "50"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Wallet ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b6087a8-a25e-414c-9d30-20e1ac3052f2",
+              "name": "Wallet statement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "wallets",
+                    ":id",
+                    "statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Wallet ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"currency\": \"string\",\n  \"start\": \"1983-03-07T01:38:51.347Z\",\n  \"end\": \"1964-05-11T04:07:04.278Z\",\n  \"items\": [\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"description\": \"string\",\n      \"execution_id\": \"string\",\n      \"date\": \"1975-11-17T20:01:56.845Z\",\n      \"action\": \"string\",\n      \"debit\": 3901.689952371249,\n      \"credit\": 8422.131327154408,\n      \"fees\": 3023.378185060309,\n      \"rate\": 7879.135136391055,\n      \"balance\": 9658.207010955528,\n      \"counterpart\": {},\n      \"user_tags\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"id\": \"string\",\n      \"description\": \"string\",\n      \"execution_id\": \"string\",\n      \"date\": \"1958-12-01T09:03:18.936Z\",\n      \"action\": \"string\",\n      \"debit\": 9798.454046269231,\n      \"credit\": 226.1767598349762,\n      \"fees\": 423.1564007606958,\n      \"rate\": 2991.5567472105754,\n      \"balance\": 3408.9500661789575,\n      \"counterpart\": {},\n      \"user_tags\": {}\n    }\n  ],\n  \"paging\": {\n    \"skip\": 3712,\n    \"take\": 6590\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8061e19-e583-4e3c-8c9d-496ff505a7f1",
+              "name": "Unauthorized - authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "wallets",
+                    ":id",
+                    "statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Wallet ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1969-04-05T01:14:00.258Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02631e62-6014-4b71-9f50-77e342bd9b1c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    "wallets",
+                    ":id",
+                    "statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "take",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Wallet ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"description\": \"string\",\n  \"error_code\": \"string\",\n  \"sub_code\": \"string\",\n  \"error_info\": {\n    \"timestamp\": \"1969-04-05T01:14:00.258Z\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.papayaglobal.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "daac5601-b1bc-4f99-9769-b2bdd6e745f9",
+    "name": "Papaya Global Workforce Payments Authentication Wallets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.\n\n\nContact Support:\n Name: Papaya Global Support",
+      "type": "text/plain"
+    }
+  }
+}

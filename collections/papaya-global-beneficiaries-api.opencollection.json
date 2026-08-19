@@ -1,0 +1,281 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Papaya Global Workforce Payments Authentication Beneficiaries API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Beneficiaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country code (ISO 3166-2)"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by currency code (ISO 4217)"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "take",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of beneficiaries with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Create Beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new payment beneficiary (individual or organization)."
+        },
+        {
+          "info": {
+            "name": "Get Beneficiary Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific beneficiary."
+        },
+        {
+          "info": {
+            "name": "Update Beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing beneficiary's details."
+        },
+        {
+          "info": {
+            "name": "Collect Beneficiary Bank Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/:id/collect",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generate a URL for collecting bank details from a beneficiary directly."
+        },
+        {
+          "info": {
+            "name": "Invite Beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/invite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an invitation to a beneficiary to complete their profile."
+        },
+        {
+          "info": {
+            "name": "Resend Beneficiary Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/invite/resend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resend an invitation to a beneficiary."
+        },
+        {
+          "info": {
+            "name": "Bulk Import Beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import multiple beneficiaries in bulk via an asynchronous job."
+        },
+        {
+          "info": {
+            "name": "Get Beneficiary Import Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/import/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the status of a bulk beneficiary import job."
+        },
+        {
+          "info": {
+            "name": "Validate Beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate beneficiary data before import."
+        },
+        {
+          "info": {
+            "name": "Get Beneficiary Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/schema/:entity_type/:country/:currency",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-2 country code"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 currency code"
+              },
+              {
+                "name": "entity_country",
+                "value": "",
+                "type": "query",
+                "description": "Entity's country of origin if different"
+              }
+            ]
+          },
+          "docs": "Retrieve the JSON schema for beneficiary data for a specific entity type, country, and currency combination."
+        },
+        {
+          "info": {
+            "name": "Bulk Invite Beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.papayaglobal.com/api/v1/payments/beneficiaries/bulkimport/invite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send invitations to multiple beneficiaries in bulk."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
