@@ -62,6 +62,8 @@ apis:
   humanURL: https://docs.papayaglobal.com/
   baseURL: https://api.papayaglobal.com/api/v1
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
