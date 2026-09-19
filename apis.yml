@@ -35,6 +35,14 @@ specificationVersion: '0.23'
 tags:
   - Payroll
   - Global Workforce
+  - Human Resources
+  - Payments
+  - Employer of Record
+  - Contractor Management
+  - Compliance
+tags_raw:
+  - Payroll
+  - Global Workforce
   - HR
   - Payments
   - Employer of Record
