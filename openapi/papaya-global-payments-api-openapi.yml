@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Papaya Global Workforce Authentication Payments API
-  description: 'REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
-
-    '
+  title: Papaya Global Workforce Payments API
+  description: REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across 160+ countries. Provides endpoints for creating and managing wallets, beneficiaries, payment groups, and payment instructions for international payroll and contractor payments.
   version: 1.0.0
   contact:
     name: Papaya Global Support
@@ -318,6 +316,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    PaymentExecution:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Scheduled execution date (YYYY-MM-DD)
     ImportJobStatus:
       type: object
       properties:
@@ -348,25 +353,39 @@ components:
           type: array
           items:
             type: object
-    Error:
+    PaymentUpdateRequest:
       type: object
       properties:
-        error:
-          type: string
         description:
           type: string
-        error_code:
+        purpose:
           type: string
-        sub_code:
-          type: string
-        error_info:
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
           type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            path:
-              type: string
+    PaymentAmount:
+      type: object
+      properties:
+        value:
+          type: number
+        currency:
+          type: string
+          description: ISO 4217 currency code
     PaymentCreateRequest:
       type: object
       required:
@@ -399,6 +418,25 @@ components:
             type: string
         user_tags:
           type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
     PaymentSource:
       type: object
       description: Source wallet or account for the payment
@@ -416,13 +454,13 @@ components:
         beneficiary:
           type: string
           description: Beneficiary ID
-    PaymentExecution:
+    Paging:
       type: object
       properties:
-        date:
-          type: string
-          format: date
-          description: Scheduled execution date (YYYY-MM-DD)
+        skip:
+          type: integer
+        take:
+          type: integer
     Payment:
       type: object
       properties:
@@ -465,53 +503,7 @@ components:
               type: number
             fees:
               type: object
-    PaymentAmount:
-      type: object
-      properties:
-        value:
-          type: number
-        currency:
-          type: string
-          description: ISO 4217 currency code
-    Paging:
-      type: object
-      properties:
-        skip:
-          type: integer
-        take:
-          type: integer
-    PaymentUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        purpose:
-          type: string
-        source:
-          $ref: '#/components/schemas/PaymentSource'
-        target:
-          $ref: '#/components/schemas/PaymentTarget'
-        amount:
-          $ref: '#/components/schemas/PaymentAmount'
-        execution:
-          $ref: '#/components/schemas/PaymentExecution'
-        approved:
-          type: boolean
-        final:
-          type: boolean
-        attachments:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
   responses:
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Bad request - missing or invalid parameters
       content:
@@ -520,6 +512,12 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - authentication failed
       content:
         application/json:
           schema:
