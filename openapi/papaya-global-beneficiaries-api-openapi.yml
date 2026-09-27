@@ -450,30 +450,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    BeneficiaryInviteRequest:
-      type: object
-      required:
-      - firstName
-      - lastName
-      - email
-      properties:
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        beneficiaryId:
-          type: string
-        payGroupId:
-          type: string
-        invoiceCurrency:
-          type: string
-        user_tags:
-          type: object
     Beneficiary:
       type: object
       properties:
@@ -502,55 +478,34 @@ components:
           $ref: '#/components/schemas/BankDetails'
         user_tags:
           type: object
+    BeneficiaryInviteRequest:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - email
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        beneficiaryId:
+          type: string
+        payGroupId:
+          type: string
+        invoiceCurrency:
+          type: string
+        user_tags:
+          type: object
     BankDetails:
       type: object
       description: Bank details for a beneficiary (schema varies by country/currency)
       additionalProperties: true
-    ImportJobStatus:
-      type: object
-      properties:
-        job_id:
-          type: string
-        started_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-        total:
-          type: integer
-        processed:
-          type: integer
-        processing:
-          type: integer
-        failed:
-          type: integer
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - completed
-          - failed
-        progress:
-          type: array
-          items:
-            type: object
-    BeneficiaryDetail:
-      allOf:
-      - $ref: '#/components/schemas/Beneficiary'
-      - type: object
-        properties:
-          status:
-            type: string
-          payments:
-            type: array
-            items:
-              type: object
-          issues:
-            type: array
-            items:
-              type: object
     BeneficiaryCreateRequest:
       type: object
       required:
@@ -584,6 +539,50 @@ components:
           $ref: '#/components/schemas/Entity'
         bank_details:
           $ref: '#/components/schemas/BankDetails'
+    ImportJobStatus:
+      type: object
+      properties:
+        job_id:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        total:
+          type: integer
+        processed:
+          type: integer
+        processing:
+          type: integer
+        failed:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+        progress:
+          type: array
+          items:
+            type: object
+    BeneficiaryInviteResponse:
+      type: object
+      properties:
+        invite:
+          type: string
+          format: date-time
+        update:
+          type: string
+          format: date-time
+        create:
+          type: string
+          format: date-time
+        name:
+          type: string
     Error:
       type: object
       properties:
@@ -603,20 +602,25 @@ components:
               format: date-time
             path:
               type: string
-    BeneficiaryInviteResponse:
+    Entity:
       type: object
-      properties:
-        invite:
-          type: string
-          format: date-time
-        update:
-          type: string
-          format: date-time
-        create:
-          type: string
-          format: date-time
-        name:
-          type: string
+      description: Entity information (person or organization)
+      additionalProperties: true
+    BeneficiaryDetail:
+      allOf:
+      - $ref: '#/components/schemas/Beneficiary'
+      - type: object
+        properties:
+          status:
+            type: string
+          payments:
+            type: array
+            items:
+              type: object
+          issues:
+            type: array
+            items:
+              type: object
     Paging:
       type: object
       properties:
@@ -624,17 +628,7 @@ components:
           type: integer
         take:
           type: integer
-    Entity:
-      type: object
-      description: Entity information (person or organization)
-      additionalProperties: true
   responses:
-    BadRequest:
-      description: Bad request - missing or invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found
       content:
@@ -643,6 +637,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
       content:
         application/json:
           schema:

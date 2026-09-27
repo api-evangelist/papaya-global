@@ -316,13 +316,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PaymentExecution:
+    PaymentAmount:
       type: object
       properties:
-        date:
+        value:
+          type: number
+        currency:
           type: string
-          format: date
-          description: Scheduled execution date (YYYY-MM-DD)
+          description: ISO 4217 currency code
     ImportJobStatus:
       type: object
       properties:
@@ -353,39 +354,6 @@ components:
           type: array
           items:
             type: object
-    PaymentUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        purpose:
-          type: string
-        source:
-          $ref: '#/components/schemas/PaymentSource'
-        target:
-          $ref: '#/components/schemas/PaymentTarget'
-        amount:
-          $ref: '#/components/schemas/PaymentAmount'
-        execution:
-          $ref: '#/components/schemas/PaymentExecution'
-        approved:
-          type: boolean
-        final:
-          type: boolean
-        attachments:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
-    PaymentAmount:
-      type: object
-      properties:
-        value:
-          type: number
-        currency:
-          type: string
-          description: ISO 4217 currency code
     PaymentCreateRequest:
       type: object
       required:
@@ -418,6 +386,13 @@ components:
             type: string
         user_tags:
           type: object
+    PaymentTarget:
+      type: object
+      description: Target beneficiary for the payment
+      properties:
+        beneficiary:
+          type: string
+          description: Beneficiary ID
     Error:
       type: object
       properties:
@@ -447,20 +422,38 @@ components:
         group:
           type: string
           description: Group ID
-    PaymentTarget:
+    PaymentExecution:
       type: object
-      description: Target beneficiary for the payment
       properties:
-        beneficiary:
+        date:
           type: string
-          description: Beneficiary ID
-    Paging:
+          format: date
+          description: Scheduled execution date (YYYY-MM-DD)
+    PaymentUpdateRequest:
       type: object
       properties:
-        skip:
-          type: integer
-        take:
-          type: integer
+        description:
+          type: string
+        purpose:
+          type: string
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
     Payment:
       type: object
       properties:
@@ -503,13 +496,14 @@ components:
               type: number
             fees:
               type: object
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
   responses:
-    BadRequest:
-      description: Bad request - missing or invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found
       content:
@@ -518,6 +512,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
       content:
         application/json:
           schema:
