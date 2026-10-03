@@ -450,6 +450,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
     Beneficiary:
       type: object
       properties:
@@ -478,67 +485,14 @@ components:
           $ref: '#/components/schemas/BankDetails'
         user_tags:
           type: object
-    BeneficiaryInviteRequest:
-      type: object
-      required:
-      - firstName
-      - lastName
-      - email
-      properties:
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        beneficiaryId:
-          type: string
-        payGroupId:
-          type: string
-        invoiceCurrency:
-          type: string
-        user_tags:
-          type: object
     BankDetails:
       type: object
       description: Bank details for a beneficiary (schema varies by country/currency)
       additionalProperties: true
-    BeneficiaryCreateRequest:
+    Entity:
       type: object
-      required:
-      - entity_type
-      - country
-      - currency
-      - entity
-      - bank_details
-      properties:
-        entity_type:
-          type: string
-          enum:
-          - individual
-          - company
-        id:
-          type: string
-          description: Optional custom beneficiary ID
-        country:
-          type: string
-          description: ISO 3166-2 country code
-        currency:
-          type: string
-          description: ISO 4217 currency code
-        tags:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
-        entity:
-          $ref: '#/components/schemas/Entity'
-        bank_details:
-          $ref: '#/components/schemas/BankDetails'
+      description: Entity information (person or organization)
+      additionalProperties: true
     ImportJobStatus:
       type: object
       properties:
@@ -602,10 +556,30 @@ components:
               format: date-time
             path:
               type: string
-    Entity:
+    BeneficiaryInviteRequest:
       type: object
-      description: Entity information (person or organization)
-      additionalProperties: true
+      required:
+      - firstName
+      - lastName
+      - email
+      properties:
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        beneficiaryId:
+          type: string
+        payGroupId:
+          type: string
+        invoiceCurrency:
+          type: string
+        user_tags:
+          type: object
     BeneficiaryDetail:
       allOf:
       - $ref: '#/components/schemas/Beneficiary'
@@ -621,20 +595,40 @@ components:
             type: array
             items:
               type: object
-    Paging:
+    BeneficiaryCreateRequest:
       type: object
+      required:
+      - entity_type
+      - country
+      - currency
+      - entity
+      - bank_details
       properties:
-        skip:
-          type: integer
-        take:
-          type: integer
+        entity_type:
+          type: string
+          enum:
+          - individual
+          - company
+        id:
+          type: string
+          description: Optional custom beneficiary ID
+        country:
+          type: string
+          description: ISO 3166-2 country code
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        tags:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
+        entity:
+          $ref: '#/components/schemas/Entity'
+        bank_details:
+          $ref: '#/components/schemas/BankDetails'
   responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized - authentication failed
       content:
@@ -643,6 +637,12 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:

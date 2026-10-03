@@ -316,102 +316,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PaymentAmount:
+    Paging:
       type: object
       properties:
-        value:
-          type: number
-        currency:
-          type: string
-          description: ISO 4217 currency code
-    ImportJobStatus:
-      type: object
-      properties:
-        job_id:
-          type: string
-        started_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-        total:
+        skip:
           type: integer
-        processed:
+        take:
           type: integer
-        processing:
-          type: integer
-        failed:
-          type: integer
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - completed
-          - failed
-        progress:
-          type: array
-          items:
-            type: object
-    PaymentCreateRequest:
-      type: object
-      required:
-      - source
-      - target
-      - amount
-      - execution
-      properties:
-        correlation_id:
-          type: string
-        description:
-          type: string
-        purpose:
-          type: string
-        source:
-          $ref: '#/components/schemas/PaymentSource'
-        target:
-          $ref: '#/components/schemas/PaymentTarget'
-        amount:
-          $ref: '#/components/schemas/PaymentAmount'
-        execution:
-          $ref: '#/components/schemas/PaymentExecution'
-        approved:
-          type: boolean
-        final:
-          type: boolean
-        attachments:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
-    PaymentTarget:
-      type: object
-      description: Target beneficiary for the payment
-      properties:
-        beneficiary:
-          type: string
-          description: Beneficiary ID
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        description:
-          type: string
-        error_code:
-          type: string
-        sub_code:
-          type: string
-        error_info:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            path:
-              type: string
     PaymentSource:
       type: object
       description: Source wallet or account for the payment
@@ -422,38 +333,13 @@ components:
         group:
           type: string
           description: Group ID
-    PaymentExecution:
+    PaymentTarget:
       type: object
+      description: Target beneficiary for the payment
       properties:
-        date:
+        beneficiary:
           type: string
-          format: date
-          description: Scheduled execution date (YYYY-MM-DD)
-    PaymentUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        purpose:
-          type: string
-        source:
-          $ref: '#/components/schemas/PaymentSource'
-        target:
-          $ref: '#/components/schemas/PaymentTarget'
-        amount:
-          $ref: '#/components/schemas/PaymentAmount'
-        execution:
-          $ref: '#/components/schemas/PaymentExecution'
-        approved:
-          type: boolean
-        final:
-          type: boolean
-        attachments:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
+          description: Beneficiary ID
     Payment:
       type: object
       properties:
@@ -496,20 +382,128 @@ components:
               type: number
             fees:
               type: object
-    Paging:
+    ImportJobStatus:
       type: object
       properties:
-        skip:
+        job_id:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        total:
           type: integer
-        take:
+        processed:
           type: integer
+        processing:
+          type: integer
+        failed:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+        progress:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
+    PaymentExecution:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Scheduled execution date (YYYY-MM-DD)
+    PaymentAmount:
+      type: object
+      properties:
+        value:
+          type: number
+        currency:
+          type: string
+          description: ISO 4217 currency code
+    PaymentCreateRequest:
+      type: object
+      required:
+      - source
+      - target
+      - amount
+      - execution
+      properties:
+        correlation_id:
+          type: string
+        description:
+          type: string
+        purpose:
+          type: string
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
+    PaymentUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        purpose:
+          type: string
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
   responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized - authentication failed
       content:
@@ -518,6 +512,12 @@ components:
             $ref: '#/components/schemas/Error'
     BadRequest:
       description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:

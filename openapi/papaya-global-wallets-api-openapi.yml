@@ -124,45 +124,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    Paging:
       type: object
       properties:
-        error:
-          type: string
-        description:
-          type: string
-        error_code:
-          type: string
-        sub_code:
-          type: string
-        error_info:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            path:
-              type: string
+        skip:
+          type: integer
+        take:
+          type: integer
     Wallet:
       type: object
       properties:
@@ -197,6 +166,25 @@ components:
           type: object
         state:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
     WalletStatement:
       type: object
       properties:
@@ -244,13 +232,25 @@ components:
                 type: object
         paging:
           $ref: '#/components/schemas/Paging'
-    Paging:
-      type: object
-      properties:
-        skip:
-          type: integer
-        take:
-          type: integer
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

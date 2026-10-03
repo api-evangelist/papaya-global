@@ -253,45 +253,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - missing or invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    Paging:
       type: object
       properties:
-        error:
-          type: string
-        description:
-          type: string
-        error_code:
-          type: string
-        sub_code:
-          type: string
-        error_info:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            path:
-              type: string
+        skip:
+          type: integer
+        take:
+          type: integer
     Group:
       type: object
       properties:
@@ -309,32 +278,6 @@ components:
           type: object
         wallet:
           type: string
-    GroupCreateRequest:
-      type: object
-      required:
-      - wallet
-      - name
-      properties:
-        wallet:
-          type: string
-          description: Wallet ID to associate with the group
-        name:
-          type: string
-        description:
-          type: string
-        user_tags:
-          type: object
-    GroupWithInfo:
-      allOf:
-      - $ref: '#/components/schemas/Group'
-      - type: object
-        properties:
-          wallet_details:
-            $ref: '#/components/schemas/Wallet'
-          payment_funding:
-            type: object
-          payment_status:
-            type: object
     Wallet:
       type: object
       properties:
@@ -369,6 +312,40 @@ components:
           type: object
         state:
           type: string
+    GroupCreateRequest:
+      type: object
+      required:
+      - wallet
+      - name
+      properties:
+        wallet:
+          type: string
+          description: Wallet ID to associate with the group
+        name:
+          type: string
+        description:
+          type: string
+        user_tags:
+          type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
     GroupUpdateRequest:
       type: object
       properties:
@@ -378,13 +355,36 @@ components:
           type: string
         user_tags:
           type: object
-    Paging:
-      type: object
-      properties:
-        skip:
-          type: integer
-        take:
-          type: integer
+    GroupWithInfo:
+      allOf:
+      - $ref: '#/components/schemas/Group'
+      - type: object
+        properties:
+          wallet_details:
+            $ref: '#/components/schemas/Wallet'
+          payment_funding:
+            type: object
+          payment_status:
+            type: object
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

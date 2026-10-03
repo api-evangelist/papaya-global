@@ -51,22 +51,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    TokenRequest:
-      type: object
-      required:
-      - api_key
-      - client_secret
-      properties:
-        api_key:
-          type: string
-          description: Unique client identifier
-        client_secret:
-          type: string
-          description: Client secret key
-        token_name:
-          type: string
-          description: Optional custom token identifier
     Error:
       type: object
       properties:
@@ -86,6 +84,21 @@ components:
               format: date-time
             path:
               type: string
+    TokenRequest:
+      type: object
+      required:
+      - api_key
+      - client_secret
+      properties:
+        api_key:
+          type: string
+          description: Unique client identifier
+        client_secret:
+          type: string
+          description: Client secret key
+        token_name:
+          type: string
+          description: Optional custom token identifier
     TokenResponse:
       type: object
       properties:
@@ -99,19 +112,6 @@ components:
         token_name:
           type: string
           description: Token identifier
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - missing or invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
