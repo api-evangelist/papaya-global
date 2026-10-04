@@ -40,6 +40,7 @@ tags:
   - Employer of Record
   - Contractor Management
   - Compliance
+  - Cross-Border Payments
 tags_raw:
   - Payroll
   - Global Workforce
@@ -48,6 +49,7 @@ tags_raw:
   - Employer of Record
   - Contractor Management
   - Compliance
+  - Cross-Border Payments
 apis:
 - aid: papaya-global:papaya-global-authentication-api
   name: Papaya Global Authentication API
@@ -122,6 +124,9 @@ apis:
   - type: Authentication
     url: https://docs.papayaglobal.com/api-reference/authentication-api
 common:
+  - type: CapabilityMap
+    url: capabilities/papaya-global-capability-edges.yml
+    name: Papaya Global Business Capability Map
   - type: AgenticAccess
     url: agentic-access/papaya-global-agentic-access.yml
   - type: DomainSecurity
