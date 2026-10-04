@@ -124,67 +124,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Paging:
-      type: object
-      properties:
-        skip:
-          type: integer
-        take:
-          type: integer
-    Wallet:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        currency:
-          type: string
-          description: ISO 4217 currency code
-        name:
-          type: string
-        owner:
-          type: string
-        funding:
-          type: object
-          properties:
-            name:
-              type: string
-            country:
-              type: string
-            account_number:
-              type: string
-            bic:
-              type: string
-            iban:
-              type: string
-        balance:
-          type: number
-          format: double
-        user_tags:
-          type: object
-        state:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        description:
-          type: string
-        error_code:
-          type: string
-        sub_code:
-          type: string
-        error_info:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            path:
-              type: string
     WalletStatement:
       type: object
       properties:
@@ -232,25 +191,66 @@ components:
                 type: object
         paging:
           $ref: '#/components/schemas/Paging'
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Forbidden - insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Wallet:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        name:
+          type: string
+        owner:
+          type: string
+        funding:
+          type: object
+          properties:
+            name:
+              type: string
+            country:
+              type: string
+            account_number:
+              type: string
+            bic:
+              type: string
+            iban:
+              type: string
+        balance:
+          type: number
+          format: double
+        user_tags:
+          type: object
+        state:
+          type: string
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
   securitySchemes:
     BearerAuth:
       type: http

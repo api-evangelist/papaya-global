@@ -253,14 +253,35 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Paging:
+    GroupUpdateRequest:
       type: object
       properties:
-        skip:
-          type: integer
-        take:
-          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        user_tags:
+          type: object
     Group:
       type: object
       properties:
@@ -312,21 +333,24 @@ components:
           type: object
         state:
           type: string
-    GroupCreateRequest:
+    GroupWithInfo:
+      allOf:
+      - $ref: '#/components/schemas/Group'
+      - type: object
+        properties:
+          wallet_details:
+            $ref: '#/components/schemas/Wallet'
+          payment_funding:
+            type: object
+          payment_status:
+            type: object
+    Paging:
       type: object
-      required:
-      - wallet
-      - name
       properties:
-        wallet:
-          type: string
-          description: Wallet ID to associate with the group
-        name:
-          type: string
-        description:
-          type: string
-        user_tags:
-          type: object
+        skip:
+          type: integer
+        take:
+          type: integer
     Error:
       type: object
       properties:
@@ -346,45 +370,21 @@ components:
               format: date-time
             path:
               type: string
-    GroupUpdateRequest:
+    GroupCreateRequest:
       type: object
+      required:
+      - wallet
+      - name
       properties:
+        wallet:
+          type: string
+          description: Wallet ID to associate with the group
         name:
           type: string
         description:
           type: string
         user_tags:
           type: object
-    GroupWithInfo:
-      allOf:
-      - $ref: '#/components/schemas/Group'
-      - type: object
-        properties:
-          wallet_details:
-            $ref: '#/components/schemas/Wallet'
-          payment_funding:
-            type: object
-          payment_status:
-            type: object
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - missing or invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

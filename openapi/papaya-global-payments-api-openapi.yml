@@ -316,30 +316,38 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Paging:
+    PaymentCreateRequest:
       type: object
+      required:
+      - source
+      - target
+      - amount
+      - execution
       properties:
-        skip:
-          type: integer
-        take:
-          type: integer
-    PaymentSource:
-      type: object
-      description: Source wallet or account for the payment
-      properties:
-        wallet:
+        correlation_id:
           type: string
-          description: Wallet ID
-        group:
+        description:
           type: string
-          description: Group ID
-    PaymentTarget:
-      type: object
-      description: Target beneficiary for the payment
-      properties:
-        beneficiary:
+        purpose:
           type: string
-          description: Beneficiary ID
+        source:
+          $ref: '#/components/schemas/PaymentSource'
+        target:
+          $ref: '#/components/schemas/PaymentTarget'
+        amount:
+          $ref: '#/components/schemas/PaymentAmount'
+        execution:
+          $ref: '#/components/schemas/PaymentExecution'
+        approved:
+          type: boolean
+        final:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
     Payment:
       type: object
       properties:
@@ -412,72 +420,6 @@ components:
           type: array
           items:
             type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        description:
-          type: string
-        error_code:
-          type: string
-        sub_code:
-          type: string
-        error_info:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            path:
-              type: string
-    PaymentExecution:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-          description: Scheduled execution date (YYYY-MM-DD)
-    PaymentAmount:
-      type: object
-      properties:
-        value:
-          type: number
-        currency:
-          type: string
-          description: ISO 4217 currency code
-    PaymentCreateRequest:
-      type: object
-      required:
-      - source
-      - target
-      - amount
-      - execution
-      properties:
-        correlation_id:
-          type: string
-        description:
-          type: string
-        purpose:
-          type: string
-        source:
-          $ref: '#/components/schemas/PaymentSource'
-        target:
-          $ref: '#/components/schemas/PaymentTarget'
-        amount:
-          $ref: '#/components/schemas/PaymentAmount'
-        execution:
-          $ref: '#/components/schemas/PaymentExecution'
-        approved:
-          type: boolean
-        final:
-          type: boolean
-        attachments:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
     PaymentUpdateRequest:
       type: object
       properties:
@@ -503,6 +445,64 @@ components:
             type: string
         user_tags:
           type: object
+    PaymentTarget:
+      type: object
+      description: Target beneficiary for the payment
+      properties:
+        beneficiary:
+          type: string
+          description: Beneficiary ID
+    PaymentAmount:
+      type: object
+      properties:
+        value:
+          type: number
+        currency:
+          type: string
+          description: ISO 4217 currency code
+    PaymentSource:
+      type: object
+      description: Source wallet or account for the payment
+      properties:
+        wallet:
+          type: string
+          description: Wallet ID
+        group:
+          type: string
+          description: Group ID
+    PaymentExecution:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Scheduled execution date (YYYY-MM-DD)
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        description:
+          type: string
+        error_code:
+          type: string
+        sub_code:
+          type: string
+        error_info:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            path:
+              type: string
   responses:
     Unauthorized:
       description: Unauthorized - authentication failed

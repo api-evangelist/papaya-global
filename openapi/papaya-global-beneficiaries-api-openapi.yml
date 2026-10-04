@@ -449,50 +449,63 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - missing or invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Paging:
+    BankDetails:
       type: object
-      properties:
-        skip:
-          type: integer
-        take:
-          type: integer
-    Beneficiary:
+      description: Bank details for a beneficiary (schema varies by country/currency)
+      additionalProperties: true
+    BeneficiaryCreateRequest:
       type: object
+      required:
+      - entity_type
+      - country
+      - currency
+      - entity
+      - bank_details
       properties:
-        id:
-          type: string
-        type:
-          type: string
-        active:
-          type: boolean
-        name:
-          type: string
         entity_type:
           type: string
           enum:
           - individual
           - company
+        id:
+          type: string
+          description: Optional custom beneficiary ID
         country:
           type: string
           description: ISO 3166-2 country code
         currency:
           type: string
           description: ISO 4217 currency code
+        tags:
+          type: array
+          items:
+            type: string
+        user_tags:
+          type: object
         entity:
           $ref: '#/components/schemas/Entity'
         bank_details:
           $ref: '#/components/schemas/BankDetails'
-        user_tags:
-          type: object
-    BankDetails:
-      type: object
-      description: Bank details for a beneficiary (schema varies by country/currency)
-      additionalProperties: true
-    Entity:
-      type: object
-      description: Entity information (person or organization)
-      additionalProperties: true
     ImportJobStatus:
       type: object
       properties:
@@ -523,20 +536,6 @@ components:
           type: array
           items:
             type: object
-    BeneficiaryInviteResponse:
-      type: object
-      properties:
-        invite:
-          type: string
-          format: date-time
-        update:
-          type: string
-          format: date-time
-        create:
-          type: string
-          format: date-time
-        name:
-          type: string
     Error:
       type: object
       properties:
@@ -580,6 +579,59 @@ components:
           type: string
         user_tags:
           type: object
+    Entity:
+      type: object
+      description: Entity information (person or organization)
+      additionalProperties: true
+    Beneficiary:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        active:
+          type: boolean
+        name:
+          type: string
+        entity_type:
+          type: string
+          enum:
+          - individual
+          - company
+        country:
+          type: string
+          description: ISO 3166-2 country code
+        currency:
+          type: string
+          description: ISO 4217 currency code
+        entity:
+          $ref: '#/components/schemas/Entity'
+        bank_details:
+          $ref: '#/components/schemas/BankDetails'
+        user_tags:
+          type: object
+    Paging:
+      type: object
+      properties:
+        skip:
+          type: integer
+        take:
+          type: integer
+    BeneficiaryInviteResponse:
+      type: object
+      properties:
+        invite:
+          type: string
+          format: date-time
+        update:
+          type: string
+          format: date-time
+        create:
+          type: string
+          format: date-time
+        name:
+          type: string
     BeneficiaryDetail:
       allOf:
       - $ref: '#/components/schemas/Beneficiary'
@@ -595,58 +647,6 @@ components:
             type: array
             items:
               type: object
-    BeneficiaryCreateRequest:
-      type: object
-      required:
-      - entity_type
-      - country
-      - currency
-      - entity
-      - bank_details
-      properties:
-        entity_type:
-          type: string
-          enum:
-          - individual
-          - company
-        id:
-          type: string
-          description: Optional custom beneficiary ID
-        country:
-          type: string
-          description: ISO 3166-2 country code
-        currency:
-          type: string
-          description: ISO 4217 currency code
-        tags:
-          type: array
-          items:
-            type: string
-        user_tags:
-          type: object
-        entity:
-          $ref: '#/components/schemas/Entity'
-        bank_details:
-          $ref: '#/components/schemas/BankDetails'
-  responses:
-    Unauthorized:
-      description: Unauthorized - authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - missing or invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http
