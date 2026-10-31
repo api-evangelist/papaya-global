@@ -1,4 +1,4 @@
-# Papaya Global (papaya-global)
+# Papaya Global
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,61 +66,158 @@
 
 Global payroll and workforce management platform with a REST API for managing international payroll, contractor payments, worker records, and compliance across 160+ countries.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/papaya-global/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/papaya-global/refs/heads/main/apis.yml)
+**Areas:** Payroll · Global Workforce · Human Resources · Payments · Employer of Record · Contractor Management · Compliance · Cross-Border Payments
 
-## Tags
+## Papaya Global on APIs.io
 
-- Payroll
-- Global Workforce
-- HR
-- Payments
-- Employer of Record
-- Contractor Management
-- Compliance
+Everything profiled for Papaya Global is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/papaya-global/](https://apis.io/providers/papaya-global/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-13
-- **Modified:** 2026-06-13
+- [Papaya Global Authentication API](https://apis.io/apis/papaya-global/papaya-global-authentication-api/) — Obtain access tokens for API authentication
+- [Papaya Global Beneficiaries API](https://apis.io/apis/papaya-global/papaya-global-beneficiaries-api/) — Manage payment recipients including individuals and organizations
+- [Papaya Global Groups API](https://apis.io/apis/papaya-global/papaya-global-groups-api/) — Manage payment groups to consolidate payment requests
+- [Papaya Global Payments API](https://apis.io/apis/papaya-global/papaya-global-payments-api/) — Manage payment instructions and execution
+- [Papaya Global Wallets API](https://apis.io/apis/papaya-global/papaya-global-wallets-api/) — Manage organizational wallets for payment funding
 
-## APIs
+### Published properties
 
-### Papaya Global Workforce Payments API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for managing global workforce payments, beneficiaries, wallets, and payment instructions across international markets.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.papayaglobal.com/](https://docs.papayaglobal.com/)
-- **Base URL:** `https://api.papayaglobal.com/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Papaya Global Agentic Access](https://apis.io/agentic-access/papaya-global/papaya-global-agentic-access/)
 
-- Payroll
-- Payments
-- Workforce
-- Beneficiaries
-- Wallets
+#### JSON Schema (3)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.papayaglobal.com/)
-- [Authentication](https://docs.papayaglobal.com/api-reference/authentication-api)
-- [OpenAPI](openapi/papaya-global-workforce-payments-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Beneficiary](https://apis.io/schemas/papaya-global/beneficiary/)
+- [Payment](https://apis.io/schemas/papaya-global/payment/)
+- [Wallet](https://apis.io/schemas/papaya-global/wallet/)
 
-## Common Properties
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Papaya Global Context](https://apis.io/jsonld/papaya-global/papaya-global-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Papaya Global Vocabulary](https://apis.io/vocabularies/papaya-global/papaya-global-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Create Beneficiary](https://apis.io/examples/papaya-global/create-beneficiary/)
+- [Create Payment](https://apis.io/examples/papaya-global/create-payment/)
+- [Obtain Token](https://apis.io/examples/papaya-global/obtain-token/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Papaya Global Workforce Payments Authentication API](https://apis.io/collections/papaya-global/open-papaya-global-authentication-api/)
+- [Papaya Global Workforce Payments Authentication Beneficiaries API](https://apis.io/collections/papaya-global/open-papaya-global-beneficiaries-api/)
+- [Papaya Global Workforce Payments Authentication Groups API](https://apis.io/collections/papaya-global/open-papaya-global-groups-api/)
+- [Papaya Global Workforce Authentication Payments API](https://apis.io/collections/papaya-global/open-papaya-global-payments-api/)
+- [Papaya Global Workforce Payments Authentication Wallets API](https://apis.io/collections/papaya-global/open-papaya-global-wallets-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Papaya Global — jsonschema rules](https://apis.io/rules/papaya-global/papaya-global-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Papaya Global Authentication](https://apis.io/security/papaya-global/papaya-global-authentication/)
+- [Papaya Global Domain Security](https://apis.io/security/papaya-global/papaya-global-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Papaya Global Plans Pricing](https://apis.io/plans/papaya-global/papaya-global-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Papaya Global Rate Limits](https://apis.io/rate-limits/papaya-global/papaya-global-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Papaya Global Finops](https://apis.io/finops/papaya-global/papaya-global-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.papayaglobal.com/)
 - [Documentation](https://docs.papayaglobal.com/)
-- [Git Hub Org](https://github.com/papayaglobal)
-- [LinkedIn](https://www.linkedin.com/company/papaya-global)
-- [Blog](https://www.papayaglobal.com/blog/)
 - [Pricing](https://www.papayaglobal.com/pricing/)
-- [Status Page](https://www.saashub.com/papaya-global-status)
-- [X (Twitter)](https://twitter.com/Papaya_Global)
-- [Plans](plans/papaya-global-plans-pricing.yml)
-- [Rate Limits](rate-limits/papaya-global-rate-limits.yml)
-- [Fin Ops](finops/papaya-global-finops.yml)
+- [Blog](https://www.papayaglobal.com/blog/)
+- [Status](https://www.saashub.com/papaya-global-status)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 61.5 |
+| Contract governance | 9.8 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 18.4 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/papaya-global/](https://apis.io/providers/papaya-global/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Papaya Global: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/papaya-global/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
